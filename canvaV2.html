@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vincent Jarvis - Mechanical Engineering Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            box-sizing: border-box;
+        }
+        
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .slide-up {
+            opacity: 0;
+            transform: translateY(50px);
+            animation: slideUp 1s ease-out forwards;
+        }
+        
+        .slide-up-delay {
+            opacity: 0;
+            transform: translateY(50px);
+            animation: slideUp 1s ease-out 0.3s forwards;
+        }
+        
+        .fade-in-right {
+            opacity: 0;
+            transform: translateX(30px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .fade-in-left {
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+        
+        .visible {
+            opacity: 1;
+            transform: translate(0);
+        }
+        
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .btn-hover {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-hover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn-hover:hover::before {
+            left: 100%;
+        }
+        
+        .name-hover {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .name-hover:hover {
+            transform: scale(1.05);
+            text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 2% auto;
+            padding: 0;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90%;
+            overflow-y: auto;
+            animation: modalSlideIn 0.3s ease-out;
+        }
+        
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            padding: 20px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .close:hover {
+            color: #000;
+        }
+        
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-slate-50 to-blue-50 min-h-full">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 shadow-sm">
+        <div class="max-w-6xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="name-hover text-2xl font-bold text-blue-600" onclick="scrollToSection('hero')">
+                    Vincent Jarvis
+                </div>
+                <div class="flex space-x-8">
+                    <a href="#about" onclick="scrollToSection('about')" class="text-gray-700 hover:text-blue-600 transition-colors duration-300 font-medium">About</a>
+                    <a href="#projects" onclick="scrollToSection('projects')" class="text-gray-700 hover:text-blue-600 transition-colors duration-300 font-medium">Projects</a>
+                    <a href="#contact" onclick="scrollToSection('contact')" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-300 font-medium">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="min-h-full flex items-center justify-center pt-28 pb-16">
+        <div class="max-w-6xl mx-auto px-6 text-center">
+            <div class="slide-up">
+                <h1 class="text-6xl md:text-7xl font-bold text-gray-900 mb-4 name-hover">
+                    Vincent Jarvis
+                </h1>
+                <p class="text-xl md:text-2xl text-blue-600 font-medium mb-6">
+                    Design • Create • Engineer
+                </p>
+                <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+                    Design with purpose, build with passion
+                </p>
+                <button onclick="scrollToSection('projects')" class="btn-hover bg-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-700 transform hover:scale-105">
+                    View My Work
+                </button>
+            </div>
+            
+            <!-- Image Placeholders -->
+            <div class="slide-up-delay mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="bg-white rounded-xl shadow-lg p-8 hover-lift">
+                    <img src="img/FRCRobot.png" alt="FRC Competition Robot" class="w-full h-64 object-cover rounded-lg">
+                </div>
+                <div class="bg-white rounded-xl shadow-lg p-8 hover-lift">
+                    <img src="img/Tarmo5.png" alt="RC Car Project" class="w-full h-64 object-cover rounded-lg">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="fade-in-right mb-8">
+                <h2 class="text-4xl font-bold text-gray-900 mb-8">About Me</h2>
+            </div>
+            <div class="fade-in-left">
+                <p class="text-lg text-gray-700 leading-relaxed">
+                    I'm a first-year Mechanical Engineering student at the University of Waterloo who loves turning ideas into tangible designs. Whether it's 3D printing a new prototype or refining a CAD model late in the lab, I'm always building something new. Here's a look at some of the projects I've brought from concept to creation.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-gradient-to-br from-slate-50 to-blue-50">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="fade-in-up mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 text-center mb-4">Projects</h2>
+                <p class="text-lg text-gray-600 text-center">Engineering solutions from concept to creation</p>
+            </div>
+            
+            <div class="project-grid">
+                <!-- Project 1: Competitive Robotics -->
+                <div class="fade-in-up bg-white rounded-xl shadow-lg overflow-hidden hover-lift">
+                    <div class="bg-gray-200 h-48 flex items-center justify-center">
+                        <img src="img/FRCBotReal.png" alt="FRC Competition Robot" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-6">
+                        <p class="text-sm text-gray-500 mb-4">Final FRC 2025 Competition Bot</p>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Competitive Robotics (FRC)</h3>
+                        <p class="text-gray-600 mb-4">Built a robot for fast scoring, climbing, and precise object handling. Integrated mechanical, electrical, and programming systems.</p>
+                        <button onclick="openModal('modal1')" class="btn-hover bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 font-medium">
+                            Details
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project 2: Planetary Gearbox -->
+                <div class="fade-in-up bg-white rounded-xl shadow-lg overflow-hidden hover-lift">
+                    <div class="bg-gray-200 h-48 flex items-center justify-center">
+                        <img src="img/TempGearbox.png" alt="Planetary Gearbox" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-6">
+                        <p class="text-sm text-gray-500 mb-4">3D printed prototype with custom bearing assemblies</p>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Planetary Gearbox</h3>
+                        <p class="text-gray-600 mb-4">Designed a miniature gearbox for high torque in limited space. Used planetary gears for efficient load distribution.</p>
+                        <button onclick="openModal('modal2')" class="btn-hover bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 font-medium">
+                            Details
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project 3: Robotic Hand -->
+                <div class="fade-in-up bg-white rounded-xl shadow-lg overflow-hidden hover-lift">
+                    <div class="bg-gray-200 h-48 flex items-center justify-center">
+                        <img src="img/Hand.png" alt="Robotic Hand" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-6">
+                        <p class="text-sm text-gray-500 mb-4">5-DOF design with servo-driven actuation</p>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Robotic Hand</h3>
+                        <p class="text-gray-600 mb-4">Created a compact robotic hand with realistic finger motion. Explored tendon-driven actuation and control.</p>
+                        <button onclick="openModal('modal3')" class="btn-hover bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 font-medium">
+                            Details
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project 4: RC Car -->
+                <div class="fade-in-up bg-white rounded-xl shadow-lg overflow-hidden hover-lift">
+                    <div class="bg-gray-200 h-48 flex items-center justify-center">
+                        <img src="img/Tarmo5.png" alt="RC Car" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-6">
+                        <p class="text-sm text-gray-500 mb-4">Carbon fiber chassis with brushless motor system</p>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">RC Car</h3>
+                        <p class="text-gray-600 mb-4">Enhanced a 3D-printed RC car for off-road use. Added first-person view via a phone-mounted camera.</p>
+                        <button onclick="openModal('modal4')" class="btn-hover bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 font-medium">
+                            Details
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project 5: Micro Robot Dog -->
+                <div class="fade-in-up bg-white rounded-xl shadow-lg overflow-hidden hover-lift">
+                    <div class="bg-gray-200 h-48 flex items-center justify-center">
+                        <img src="img/RoboDog.png" alt="Micro Robot Dog" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-6">
+                        <p class="text-sm text-gray-500 mb-4">12-servo design with IMU-based balance control</p>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Micro Robot Dog</h3>
+                        <p class="text-gray-600 mb-4">Built a small, affordable robot dog. Used elastic support to assist microservo motion.</p>
+                        <button onclick="openModal('modal5')" class="btn-hover bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 font-medium">
+                            Details
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project 6: Levitating Hydro Generator -->
+                <div class="fade-in-up bg-white rounded-xl shadow-lg overflow-hidden hover-lift">
+                    <div class="bg-gray-200 h-48 flex items-center justify-center">
+                        <img src="img/Levitation.png" alt="Levitating Hydro Generator" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-6">
+                        <p class="text-sm text-gray-500 mb-4">Neodymium magnet array with custom turbine design</p>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Levitating Hydro Generator</h3>
+                        <p class="text-gray-600 mb-4">Developed a hydro generator using magnetic levitation. Incorporated a flywheel to maintain smooth rotation.</p>
+                        <button onclick="openModal('modal6')" class="btn-hover bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 font-medium">
+                            Details
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project 7: Ferrari 335s Model -->
+                <div class="fade-in-up bg-white rounded-xl shadow-lg overflow-hidden hover-lift">
+                    <div class="bg-gray-200 h-48 flex items-center justify-center">
+                        <img src="img/Ferrari335s.png" alt="Ferrari 335s Model" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-6">
+                        <p class="text-sm text-gray-500 mb-4">CNC-machined aluminum chassis with detailed bodywork</p>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Ferrari 335s Model</h3>
+                        <p class="text-gray-600 mb-4">Created a scale 3D model of the Ferrari 335s. Focused on accurate curves and advanced CAD surfacing.</p>
+                        <button onclick="openModal('modal7')" class="btn-hover bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 font-medium">
+                            Details
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <div class="fade-in-up">
+                <h2 class="text-4xl font-bold text-gray-900 mb-8">Get In Touch</h2>
+                <p class="text-lg text-gray-700 mb-8">
+                    Interested in working together? Reach me directly by email or download my resume below.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <a href="mailto:vincent.jarvis896@gmail.com" class="btn-hover bg-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-700 transform hover:scale-105">
+                        Email Me
+                    </a>
+                    <button onclick="downloadResume()" class="btn-hover bg-gray-800 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-900 transform hover:scale-105">
+                        Download Resume
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modals for Projects -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal1')">&times;</span>
+            <div class="p-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6">Competitive Robotics (FRC)</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                        <p class="text-gray-500">Insert Robot Action Image</p>
+                    </div>
+                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                        <p class="text-gray-500">Insert Team Photo</p>
+                    </div>
+                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                        <p class="text-gray-500">Insert CAD Model</p>
+                    </div>
+                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                        <p class="text-gray-500">Insert Competition Scene</p>
+                    </div>
+                </div>
+                <div class="space-y-4 text-gray-700">
+                    <p class="font-bold text-lg">The Idea:</p>
+                    <ul class="list-disc pl-5 mb-4">
+                        <li>Create a robust and efficient robot capable of fast scoring, reliable climbing, and precise object handling.</li>
+                        <li>Integrate all mechanical, electrical, and programming systems under a coordinated design workflow.</li>
+                        <li>Balance mechanical complexity with ease of maintenance and competition reliability.</li>
+                    </ul>
+                    
+                    <p class="font-bold text-lg">How?</p>
+                    <ul class="list-disc pl-5 mb-4">
+                        <li>Directed the Design and Build subteam, delegating fabrication and mentoring newer members.</li>
+                        <li>Designed a 3D-angled intake funnel in Onshape with a dual-servo retractable folding mechanism for efficient game piece capture and stowing.</li>
+                        <li>Fabricated a CNC-cut polycarbonate hanging mechanism and developed a two-stage cascade pulley lift powered by dual Kraken X60 motors for rapid extension.</li>
+                    </ul>
+                    
+                    <p class="font-bold text-lg">Results:</p>
+                    <ul class="list-disc pl-5">
+                        <li>Achieved 95% intake reliability with smooth handoffs to the end effector.</li>
+                        <li>Enabled the 115 lb robot to climb onto a swinging low bar in 2.5 seconds.</li>
+                        <li>Delivered a 57" lift extension in 0.25 seconds, supporting a 6.7 kg payload with high structural rigidity and precise motion.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal2" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal2')">&times;</span>
+            <div class="p-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6">Planetary Gearbox</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                        <p class="text-gray-500">Insert Gearbox Assembly</p>
+                    </div>
+                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                        <p class="text-gray-500">Insert Exploded View</p>
+                    </div>
+                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                        <p class="text-gray-500">Insert Testing Setup</p>
+                    </div>
+                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                        <p class="text-gray-500">Insert Performance Graph</p>
+                    </div>
+                </div>
+                <div class="space-y-6 text-gray-700">
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">The Idea</h3>
+                        <p>Design a miniature, high-efficiency gearbox to maximize torque while minimizing space.</p>
+                        <p>Utilize planetary gear configuration for balanced load distribution and smooth motion.</p>
+                        <p>Integrate with a 12V brushed DC motor for practical mechanical testing.</p>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">How?</h3>
+                        <p>Modeled in SolidWorks with custom gear geometry and 0.1 mm print tolerances for precision meshing.</p>
+                        <p>Included 6 bearings, 3 planet gears, and 1 sun gear to achieve compact, stable operation.</p>
+                        <p>Applied multi-material 3D printing and fastened components with 9 embedded screws for rigidity.</p>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Results</h3>
+                        <p>Achieved 5× torque increase and 5× speed reduction from direct motor output.</p>
+                        <p>Delivered 1 mm of precise motion at a 10 cm lever arm with minimal backlash.</p>
+                        <p>Demonstrated an efficient, durable prototype suitable for small-scale robotic applications.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal3" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal3')">&times;</span>
+            <div class="p-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6">Robotic Hand</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                        <p class="text-gray-500">Insert Hand Gripping Object</p>
+                    </div>
+                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                        <p class="text-gray-500">Insert Finger Mechanism</p>
+                    </div>
+                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                        <p class="text-gray-500">Insert Control System</p>
+                    </div>
+                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                        <p class="text-gray-500">Insert Force Sensor Array</p>
+                    </div>
+                </div>
+                <div class="space-y-6 text-gray-700">
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">The Idea</h3>
+                        <p>Create a compact, lifelike robotic hand capable of mimicking human finger movement. Explore tendon-driven actuation for natural motion and smooth flexibility. Design a functional demonstration model built entirely within a weekend timeframe.</p>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">How?</h3>
+                        <p>Modeled all components in Onshape, refining finger geometry for strength and joint precision. Integrated 6 microservos and an Arduino Uno R3 for five programmable hand motions. Tested and iterated multiple elastic and tendon configurations for realistic finger motion and return tension.</p>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Results</h3>
+                        <p>Improved finger strength by 40% through CAD optimization and material tuning. Achieved smooth, controllable actuation using a joystick interface. Completed a fully functional prototype despite material limits, time constraints, and compact design challenges.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal4" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal4')">&times;</span>
+            <div class="p-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6">RC Car</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                        <p class="text-gray-500">Insert RC Car</p>
+                    </div>
+                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                        <p class="text-gray-500">Insert RC Car</p>
+                    </div>
+                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                        <p class="text-gray-500">Insert RC Car</p>
+                    </div>
+                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                        <p class="text-gray-500">Insert RC Car</p>
+                    </div>
+                </div>
+                <div class="space-y-6 text-gray-700">
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">The Idea</h3>
+                        <p>Recreate and enhance a 3D-printed RC car design found online for high-torque off-road use. Add first-person view (FPV) capabilities through a phone-mounted camera system. Experiment with professional CAD practices for large multi-part assemblies in Onshape.</p>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">How?</h3>
+                        <p>Designed custom TPU monster truck wheels with curved tread geometry for maximum grip. Added a modular phone mount for live FPV streaming via screen mirroring. Assembled components with threaded rods, counterbore bolts, and subassemblies for structural rigidity.</p>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Results</h3>
+                        <p>Achieved smooth off-road control with a 1000 kV BLDC motor and 30 kg servo. Improved traction and durability across varied terrain using flexible TPU parts. Learned robust CAD organization, part naming, and design intent—mirroring industry standards.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal5" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal5')">&times;</span>
+            <div class="p-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6">Micro Robot Dog</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                        <p class="text-gray-500">Insert Micro Robot Dog></p>
+                    </div>
+                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                        <p class="text-gray-500">Insert Micro Robot Dog</p>
+                    </div>
+                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                        <p class="text-gray-500">Insert Micro Robot Dog</p>
+                    </div>
+                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                        <p class="text-gray-500">Insert Micro Robot Dog</p>
+                    </div>
+                </div>
+                <div class="space-y-6 text-gray-700">
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">The Idea</h3>
+                        <p>Build an ultra-small, affordable robot dog after finding existing models too expensive. Overcome the power limitations of microservos by distributing load through clever mechanical design. Use elastic support systems to assist servo torque and mimic muscle-like movement.</p>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">How?</h3>
+                        <p>Designed and prototyped a single robotic leg as a proof of concept. Implemented dual diagonal servo actuation with elastic tension sharing the upward load. Tested lifting performance with 3D-printed components and lightweight linkages for structural efficiency.</p>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Results</h3>
+                        <p>Prototype leg successfully lifted 500 g, proving feasibility at small scale. Demonstrated that microservos can achieve realistic motion when aided by elastic support. Project halted before full quadruped completion due to electronics cost and control complexity, but validated key design principles.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal6" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal6')">&times;</span>
+            <div class="p-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6">Levitating Hydro Generator</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                        <p class="text-gray-500">Insert Image></p>
+                    </div>
+                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                        <p class="text-gray-500">Insert Image</p>
+                    </div>
+                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                        <p class="text-gray-500">Insert Image</p>
+                    </div>
+                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                        <p class="text-gray-500">Insert Image</p>
+                    </div>
+                </div>
+                <div class="space-y-6 text-gray-700">
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">The Idea</h3>
+                        <p>Create a high-efficiency hydro generator by eliminating bearing friction through magnetic levitation. Use overengineering as exploration, testing the limits of unconventional generator design. Incorporate a flywheel system to maintain smooth, consistent rotation during operation.</p>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">How?</h3>
+                        <p>Built the frame from 2020 aluminum extrusions for precise alignment and rigidity. Integrated 60 N52 neodymium magnets for levitation and power generation. Wound custom 20 AWG copper coils and coupled them with a high-inertia flywheel for steady energy output.</p>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Results</h3>
+                        <p>Generated a peak power output of 6 W with an overall efficiency of ~5%. Found that magnetic interference between the levitation and generator systems caused major energy losses. Despite inefficiency, the project successfully demonstrated magnetic levitation feasibility in a functional generator setup.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+     <div id="modal7" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal7')">&times;</span>
+            <div class="p-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6">Ferrari 335s Model</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                        <p class="text-gray-500">Insert Image></p>
+                    </div>
+                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                        <p class="text-gray-500">Insert Image</p>
+                    </div>
+                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                        <p class="text-gray-500">Insert Image</p>
+                    </div>
+                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                        <p class="text-gray-500">Insert Image</p>
+                    </div>
+                </div>
+                <div class="space-y-6 text-gray-700">
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">The Idea</h3>
+                        <p>Create a scale 3D-printed model of the Ferrari 335s. Use the project as an opportunity to learn advanced surfacing and design intent in Onshape. Reproduce the cars complex, flowing curves as accurately as possible within one month.</p>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">How?</h3>
+                        <p>Used reference geometry and sketches to match the car’s proportions and curvature. Applied parametric modeling techniques to allow for smooth iteration and refinement. Conducted multiple design revisions to achieve realistic body contours and accurate details.</p>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Results</h3>
+                        <p>Produced a highly accurate 3D model closely resembling the Ferrari 335s. Learned advanced CAD surfacing and curvature control through hands-on experimentation. Final design achieved strong visual realism, with only minor imperfections beyond project scope.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scrolling function
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            const navHeight = 80;
+            const elementPosition = element.offsetTop - navHeight;
+            
+            window.scrollTo({
+                top: elementPosition,
+                behavior: 'smooth'
+            });
+        }
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.addEventListener('DOMContentLoaded', () => {
+            const animatedElements = document.querySelectorAll('.fade-in-right, .fade-in-left, .fade-in-up');
+            animatedElements.forEach(el => observer.observe(el));
+        });
+
+        // Modal functions
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        }
+
+        // Resume download function - opens in new tab
+        function downloadResume() {
+            // Path to your resume file
+            const resumeUrl = 'Vincent_Jarvis_Resume.pdf';
+            
+            // Open in new tab
+            window.open(resumeUrl, '_blank');
+        }
+
+        // Add keyboard navigation for modals
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const openModals = document.querySelectorAll('.modal[style*="block"]');
+                openModals.forEach(modal => {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                });
+            }
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9953ddee63cf39fd',t:'MTc2MTU4NTY1Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
