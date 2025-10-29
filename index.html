@@ -1,786 +1,660 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
- <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vincent Jarvis - Mechanical Engineering Portfolio</title>
-  <script src="/_sdk/element_sdk.js"></script>
-  <style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vincent Jarvis - Mechanical Engineering Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
         body {
             box-sizing: border-box;
         }
         
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
         * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
         }
-
-        body {
-            font-family: 'Arial', sans-serif;
-            background: #f8f9fa;
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        /* Drafting Grid Background */
-        .grid-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            z-index: -1;
-            background-image: 
-                linear-gradient(rgba(0, 100, 200, 0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 100, 200, 0.1) 1px, transparent 1px);
-            background-size: 20px 20px;
-            animation: gridFadeIn 2s ease-in-out 1.5s forwards;
-        }
-
-        @keyframes gridFadeIn {
-            0% {
-                opacity: 0;
-                background-size: 5px 5px;
-            }
-            100% {
-                opacity: 1;
-                background-size: 20px 20px;
-            }
-        }
-
-        /* Navigation */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            opacity: 0;
-            transform: translateY(-100%);
-            animation: navSlideIn 1s ease-out 2.5s forwards;
-            border-bottom: 2px solid #0064c8;
-        }
-
-        @keyframes navSlideIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .nav-brand {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #0064c8;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .nav-brand:hover {
-            transform: scale(1.05);
-            text-shadow: 2px 2px 4px rgba(0, 100, 200, 0.3);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: #0064c8;
-            transform: translateY(-2px);
-        }
-
-        .nav-links a.active {
-            color: #0064c8;
-            font-weight: bold;
-        }
-
-        .progress-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #0064c8, #00a8ff);
-            z-index: 1001;
-            transition: width 0.3s ease;
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            position: relative;
-            padding: 0 2rem;
-        }
-
-
-        .name-box {
-            position: absolute;
-            top: -20px;
-            left: -20px;
-            right: -20px;
-            bottom: -20px;
-            border: 3px solid #0064c8;
-            opacity: 0;
-            animation: boxDraw 2s ease-in-out 4s forwards;
-        }
-
-        @keyframes boxDraw {
-            0% {
-                opacity: 1;
-                clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
-            }
-            25% {
-                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-            }
-            50% {
-                clip-path: polygon(0 0, 100% 0, 100% 100%, 100% 100%);
-            }
-            75% {
-                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-            }
-            100% {
-                opacity: 1;
-                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-            }
-        }
-
-        .hero-subtitle {
-            font-size: 1.5rem;
-            color: #666;
-            margin-bottom: 1rem;
-            opacity: 0;
-            animation: fadeInUp 1s ease-out 5s forwards;
-        }
-
-        .hero-motto {
-            font-size: 1.2rem;
-            color: #888;
-            margin-bottom: 2rem;
-            font-style: italic;
-            opacity: 0;
-            animation: fadeInUp 1s ease-out 5.5s forwards;
-        }
-
-        .cta-button {
-            background: linear-gradient(135deg, #0064c8, #00a8ff);
-            color: white;
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            opacity: 0;
-            animation: fadeInUp 1s ease-out 6s forwards;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0, 100, 200, 0.3);
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Sections */
-        .section {
-            padding: 5rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            color: #0064c8;
-            margin-bottom: 2rem;
-            text-align: center;
-            opacity: 0;
-            transform: translateX(50px);
-        }
-
-        .section-title.animate {
-            animation: slideInRight 1s ease-out forwards;
-        }
-
-        @keyframes slideInRight {
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .about-content {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            color: #555;
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-            opacity: 0;
-            transform: translateX(-50px);
-        }
-
-        .about-content.animate {
-            animation: slideInLeft 1s ease-out forwards;
-        }
-
-        @keyframes slideInLeft {
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        /* Projects Grid */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .project-card {
-            background: white;
-            border: 2px dashed #0064c8;
-            border-radius: 15px;
-            padding: 2rem;
-            text-align: center;
-            transition: all 0.3s ease;
+        
+        .slide-up {
             opacity: 0;
             transform: translateY(50px);
-            cursor: pointer;
+            animation: slideUp 1s ease-out forwards;
         }
-
-        .project-card.animate {
-            animation: fadeInUp 0.8s ease-out forwards;
+        
+        .slide-up-delay {
+            opacity: 0;
+            transform: translateY(50px);
+            animation: slideUp 1s ease-out 0.3s forwards;
         }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0, 100, 200, 0.2);
-            border-color: #00a8ff;
+        
+        .fade-in-right {
+            opacity: 0;
+            transform: translateX(30px);
+            transition: all 0.8s ease-out;
         }
-
-        .project-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 1rem;
-            background: linear-gradient(135deg, #0064c8, #00a8ff);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            color: white;
+        
+        .fade-in-left {
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: all 0.8s ease-out;
         }
-
-        .project-title {
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: #0064c8;
-            margin-bottom: 0.5rem;
+        
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
         }
-
-        .project-description {
-            color: #666;
-            margin-bottom: 1rem;
-            font-size: 0.95rem;
+        
+        .visible {
+            opacity: 1;
+            transform: translate(0);
         }
-
-        .project-tech {
-            font-size: 0.85rem;
-            color: #888;
-            margin-bottom: 1rem;
-            font-style: italic;
+        
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-
-        .details-button {
-            background: transparent;
-            border: 2px solid #0064c8;
-            color: #0064c8;
-            padding: 0.5rem 1.5rem;
-            border-radius: 25px;
-            cursor: pointer;
+        
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .btn-hover {
             transition: all 0.3s ease;
-            font-weight: bold;
+            position: relative;
+            overflow: hidden;
         }
-
-        .details-button:hover {
-            background: #0064c8;
-            color: white;
+        
+        .btn-hover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn-hover:hover::before {
+            left: 100%;
+        }
+        
+        .name-hover {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .name-hover:hover {
             transform: scale(1.05);
+            text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
         }
-
-        /* Modal */
+        
         .modal {
             display: none;
             position: fixed;
-            top: 0;
+            z-index: 1000;
             left: 0;
+            top: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 2000;
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            background-color: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
         }
-
-        .modal.show {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 1;
-        }
-
+        
         .modal-content {
-            background: white;
+            background-color: white;
+            margin: 2% auto;
+            padding: 0;
             border-radius: 15px;
-            padding: 2rem;
+            width: 90%;
             max-width: 800px;
-            max-height: 80vh;
+            max-height: 90%;
             overflow-y: auto;
-            margin: 2rem;
-            transform: scale(0.8);
-            transition: transform 0.3s ease;
+            animation: modalSlideIn 0.3s ease-out;
         }
-
-        .modal.show .modal-content {
-            transform: scale(1);
+        
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
         }
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-            border-bottom: 2px solid #0064c8;
-            padding-bottom: 1rem;
-        }
-
-        .modal-title {
-            font-size: 1.8rem;
-            color: #0064c8;
+        
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
             font-weight: bold;
-        }
-
-        .close-button {
-            background: none;
-            border: none;
-            font-size: 2rem;
-            color: #666;
+            padding: 20px;
             cursor: pointer;
             transition: color 0.3s ease;
         }
-
-        .close-button:hover {
-            color: #0064c8;
+        
+        .close:hover {
+            color: #000;
         }
-
-        .modal-images {
+        
+        .project-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1rem;
-            margin: 2rem 0;
-        }
-
-        .modal-image {
-            width: 100%;
-            height: 120px;
-            background: linear-gradient(135deg, #f0f8ff, #e6f3ff);
-            border: 2px dashed #0064c8;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #0064c8;
-            font-weight: bold;
-        }
-
-        /* Contact Section */
-        .contact-content {
-            text-align: center;
-            opacity: 0;
-            transform: translateY(50px);
-        }
-
-        .contact-content.animate {
-            animation: fadeInUp 1s ease-out forwards;
-        }
-
-        .contact-buttons {
-            display: flex;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
-            justify-content: center;
-            margin-top: 2rem;
-            flex-wrap: wrap;
         }
-
-        .contact-button {
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            display: inline-block;
-        }
-
-        .email-button {
-            background: linear-gradient(135deg, #0064c8, #00a8ff);
-            color: white;
-        }
-
-        .resume-button {
-            background: transparent;
-            border: 2px solid #0064c8;
-            color: #0064c8;
-        }
-
-        .contact-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0, 100, 200, 0.3);
-        }
-
-        .resume-button:hover {
-            background: #0064c8;
-            color: white;
-        }
-
-        /* Responsive Design */
+        
         @media (max-width: 768px) {
-            .hero-name {
-                font-size: 2.5rem;
-            }
-            
-            .nav-links {
-                gap: 1rem;
-            }
-            
-            .projects-grid {
+            .project-grid {
                 grid-template-columns: 1fr;
             }
-            
-            .contact-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
         }
-        .drawing-container {
-            width: 90%;
-            max-width: 1000px;
-            height: 300px;
-            position: relative;
-        }
-        .name-svg {
-            width: 100%;
-            height: 100%;
-        }
-
-        .letter-stroke {
-            fill: none;
-            stroke: #2c3e50;
-            stroke-width: 6;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-            stroke-dasharray: 1000;
-            stroke-dashoffset: 1000;
-        }
-        /* Sequential animation for each stroke */
-        .stroke-1 { animation: draw 0.4s ease-in-out 0.1s forwards; }
-        .stroke-2 { animation: draw 0.4s ease-in-out 0.2s forwards; }
-        .stroke-3 { animation: draw 0.4s ease-in-out 0.3s forwards; }
-        .stroke-4 { animation: draw 0.4s ease-in-out 0.4s forwards; }
-        .stroke-5 { animation: draw 0.4s ease-in-out 0.5s forwards; }
-        .stroke-6 { animation: draw 0.4s ease-in-out 0.6s forwards; }
-        .stroke-7 { animation: draw 0.8s ease-in-out 0.7s forwards; }
-        .stroke-8 { animation: draw 0.4s ease-in-out 0.8s forwards; }
-        .stroke-9 { animation: draw 0.4s ease-in-out 0.9s forwards; }
-        .stroke-10 { animation: draw 0.4s ease-in-out 1.0s forwards; }
-        .stroke-11 { animation: draw 0.4s ease-in-out 1.1s forwards; }
-        .stroke-12 { animation: draw 0.4s ease-in-out 1.2s forwards; }
-        .stroke-13 { animation: draw 0.4s ease-in-out 1.3s forwards; }
-        .stroke-14 { animation: draw 0.4s ease-in-out 1.4s forwards; }
-        .stroke-15 { animation: draw 0.4s ease-in-out 1.5s forwards; }
-        .stroke-16 { animation: draw 0.4s ease-in-out 1.6s forwards; }
-        .stroke-17 { animation: draw 0.4s ease-in-out 1.7s forwards; }
-        .stroke-18 { animation: draw 0.4s ease-in-out 1.8s forwards; }
-        .stroke-19 { animation: draw 0.4s ease-in-out 1.9s forwards; }
-        .stroke-20 { animation: draw 0.4s ease-in-out 2.0s forwards; }
-        .stroke-21 { animation: draw 0.4s ease-in-out 2.1s forwards; }
-        .stroke-22 { animation: draw 0.4s ease-in-out 2.2s forwards; }
-        .stroke-23 { animation: draw 0.4s ease-in-out 2.3s forwards; }
-        .stroke-24 { animation: draw 0.4s ease-in-out 2.4s forwards; }
-        .stroke-25 { animation: draw 0.4s ease-in-out 2.5s forwards; }
-        .stroke-26 { animation: draw 0.4s ease-in-out 2.6s forwards; }
-        .stroke-27 { animation: draw 0.4s ease-in-out 2.7s forwards; }
-        .stroke-28 { animation: draw 0.4s ease-in-out 2.8s forwards; }
-        .stroke-29 { animation: draw 0.4s ease-in-out 2.9s forwards; }
-        .stroke-30 { animation: draw 0.4s ease-in-out 3.0s forwards; }
-        .stroke-31 { animation: draw 0.4s ease-in-out 3.1s forwards; }
-        .stroke-32 { animation: draw 0.4s ease-in-out 3.2s forwards; }
-        .stroke-33 { animation: draw 0.4s ease-in-out 3.3s forwards; }
-
-        @keyframes draw {
-            to {
-                stroke-dashoffset: 0;
-            }
-        }
-
-
     </style>
-  <style>@view-transition { navigation: auto; }</style>
-  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
-  <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
- </head>
- <body>
-  <div class="grid-background"></div>
-  <div class="progress-bar" id="progressBar"></div>
-  <nav class="navbar"><a href="#home" class="nav-brand" id="navBrand">Vincent Jarvis</a>
-   <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#contact" class="active">Contact</a></li>
-   </ul>
-  </nav>
-  <section id="home" class="hero">
-   <div style="position: relative;">
-    <div class="drawing-container">
-        <svg class="name-svg" viewBox="0 0 1600 200" xmlns="http://www.w3.org/2000/svg">
-            <!-- V -->
-            <path class="letter-stroke stroke-3" d="M10 40 L70 160"/>
-            <path class="letter-stroke stroke-3" d="M130 40 L70 160"/>
-            <!-- I -->
-            <path class="letter-stroke stroke-3" d="M160 40 L160 160"/>
-            <!-- N -->
-            <path class="letter-stroke stroke-4" d="M200 40 L200 160"/>
-            <path class="letter-stroke stroke-5" d="M305 40 L305 160"/>
-            <path class="letter-stroke stroke-6" d="M200 40 L305 160"/>
-            <!-- C -->
-            <path class="letter-stroke stroke-7" d="M395 40 A60 60 0 0 0 395 160 A60 60 0 0 0 435 145"/>
-            <path class="letter-stroke stroke-8" d="M435 55 A60 60 0 0 0 395 40"/>
-            <!-- E -->
-            <path class="letter-stroke stroke-9" d="M470 40 L470 160"/>
-            <path class="letter-stroke stroke-10" d="M470 160 L550 160"/>
-            <path class="letter-stroke stroke-11" d="M470 40 L550 40"/>
-            <path class="letter-stroke stroke-12" d="M470 100 L530 100"/>
-            <!-- N -->
-            <path class="letter-stroke stroke-13" d="M580 40 L580 160"/>
-            <path class="letter-stroke stroke-14" d="M680 40 L680 160"/>
-            <path class="letter-stroke stroke-15" d="M580 40 L680 160"/>
-            <!-- T -->
-            <path class="letter-stroke stroke-17" d="M710 40 L800 40"/>
-            <path class="letter-stroke stroke-18" d="M755 40 L755 160"/>
-            <!-- J -->
-            <path class="letter-stroke stroke-19" d="M1000 40 L1000 120"/>
-            <path class="letter-stroke stroke-20" d="M1000 120 A50 40 0 0 1 900 120"/>
-            <!-- A -->
-            <path class="letter-stroke stroke-21" d="M1080 40 L1020 160"/>
-            <path class="letter-stroke stroke-22" d="M1080 40 L1140 160"/>
-            <path class="letter-stroke stroke-23" d="M1045 110 L1115 110"/>
-            <!-- R -->
-            <path class="letter-stroke stroke-24" d="M1160 40 L1160 160"/>
-            <path class="letter-stroke stroke-25" d="M1160 100 L1220 100"/>
-            <path class="letter-stroke stroke-26" d="M1160 40 L1220 40 A30 30 0 0 1 1220 100"/>
-            <path class="letter-stroke stroke-27" d="M1220 100 L1250 160"/>
-            <!-- V -->
-            <path class="letter-stroke stroke-28" d="M1280 40 L1330 160"/>
-            <path class="letter-stroke stroke-29" d="M1380 40 L1330 160"/>
-            <!-- I -->
-            <path class="letter-stroke stroke-30" d="M1410 40 L1410 160"/>
-            <!-- S -->
-            <path class="letter-stroke stroke-31" d="M1450 65 A40 25 0 0 1 1530 65"/>
-            <path class="letter-stroke stroke-32" d="M1450 65 A 40 25 0 0 0 1490 90 A50 35 0 0 1 1490 160"/>
-            <path class="letter-stroke stroke-33" d="M1440 125 A50 35 0 0 0 1490 160"/>
-        </svg>
-    </div>
-   <p class="hero-subtitle" id="heroSubtitle">Design • Create • Engineer</p>
-   <p class="hero-motto" id="heroMotto">Design with purpose, build with passion</p><a href="#projects" class="cta-button">View My Work</a>
-  </section>
-  <section id="about" class="section">
-   <h2 class="section-title">About Me</h2>
-   <p class="about-content" id="aboutText">I'm a first-year Mechanical Engineering student at the University of Waterloo who loves turning ideas into tangible designs. Whether it's 3D printing a new prototype or refining a CAD model late in the lab, I'm always building something new. Here's a look at some of the projects I've brought from concept to creation.</p>
-  </section>
-  <section id="projects" class="section">
-   <h2 class="section-title">Projects</h2>
-   <div class="projects-grid" id="projectsGrid"><!-- Projects will be populated by JavaScript -->
-   </div>
-  </section>
-  <section id="contact" class="section">
-   <h2 class="section-title">Get In Touch</h2>
-   <div class="contact-content" id="contactContent">
-    <p id="contactText">Interested in working together? Reach me directly by email or download my resume below.</p>
-    <div class="contact-buttons"><a href="mailto:vincent.jarvis896@gmail.com" class="contact-button email-button" id="emailButton">Email Me</a> <button class="contact-button resume-button" onclick="downloadResume()">Download Resume</button>
-    </div>
-   </div>
-  </section><!-- Modal -->
-  <div class="modal" id="projectModal">
-   <div class="modal-content">
-    <div class="modal-header">
-     <h3 class="modal-title" id="modalTitle"></h3><button class="close-button" onclick="closeModal()">×</button>
-    </div>
-    <div id="modalBody"></div>
-   </div>
-  </div>
-  <script>
-        // Configuration object
-        const defaultConfig = {
-            name: "Vincent Jarvis",
-            subtitle: "Design • Create • Engineer",
-            motto: "Design with purpose, build with passion",
-            about_text: "I'm a first-year Mechanical Engineering student at the University of Waterloo who loves turning ideas into tangible designs. Whether it's 3D printing a new prototype or refining a CAD model late in the lab, I'm always building something new. Here's a look at some of the projects I've brought from concept to creation.",
-            email: "vincent.jarvis896@gmail.com",
-            contact_text: "Interested in working together? Reach me directly by email or download my resume below."
-        };
+</head>
+<body class="bg-gradient-to-br from-slate-50 to-blue-50 min-h-full">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 shadow-sm">
+        <div class="max-w-6xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="name-hover text-2xl font-bold text-blue-600" onclick="scrollToSection('hero')">
+                    Vincent Jarvis
+                </div>
+                <div class="flex space-x-8">
+                    <a href="#about" onclick="scrollToSection('about')" class="text-gray-700 hover:text-blue-600 transition-colors duration-300 font-medium">About</a>
+                    <a href="#projects" onclick="scrollToSection('projects')" class="text-gray-700 hover:text-blue-600 transition-colors duration-300 font-medium">Projects</a>
+                    <a href="#contact" onclick="scrollToSection('contact')" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-300 font-medium">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
 
-        // Projects data
-        const projects = [
-            {
-                title: "Competitive Robotics (FRC)",
-                description: "Designed and built competition robot mechanisms. Led mechanical subsystem integration for regional championships.",
-                tech: "SolidWorks • Aluminum Fabrication • Pneumatics",
-                icon: "🤖",
-                details: {
-                    paragraphs: [
-                        "As part of FIRST Robotics Competition Team 4334, I led the mechanical design of our competition robot 'Atlas'. The challenge required precise ball manipulation and climbing mechanisms within strict weight and size constraints.",
-                        "I designed the intake system using SolidWorks, optimizing for both speed and reliability. The mechanism featured custom aluminum brackets and pneumatic actuators, allowing for rapid game piece collection during autonomous periods.",
-                        "Our team advanced to regional semifinals, with the robot achieving a 85% autonomous success rate. The project taught me valuable lessons about design for manufacturing, iterative prototyping, and working under pressure with tight deadlines."
-                    ],
-                    images: ["Robot Assembly", "Intake Mechanism", "Competition Action", "Team Workshop"]
-                }
-            },
-            {
-                title: "Planetary Gearbox",
-                description: "Engineered high-ratio planetary gear system. Achieved 100:1 reduction with 92% efficiency rating.",
-                tech: "Fusion 360 • Gear Theory • Precision Machining",
-                icon: "⚙️",
-                details: {
-                    paragraphs: [
-                        "Designed a compact planetary gearbox achieving 100:1 gear reduction for a robotic application requiring high torque and precise positioning. The system needed to fit within a 4-inch diameter constraint while maintaining high efficiency.",
-                        "Using Fusion 360, I calculated optimal gear ratios and performed stress analysis on each component. The design featured hardened steel planet gears, aluminum carrier, and bronze bushings for smooth operation under load.",
-                        "After CNC machining and assembly, testing showed 92% efficiency and less than 2 arcminutes of backlash. The gearbox successfully handled 50 Nm continuous torque, exceeding design specifications by 25%."
-                    ],
-                    images: ["CAD Assembly", "Machined Components", "Efficiency Testing", "Final Assembly"]
-                }
-            },
-            {
-                title: "Robotic Hand",
-                description: "3D printed articulated prosthetic hand prototype. Implemented tendon-driven actuation system.",
-                tech: "3D Printing • Biomechanics • Servo Control",
-                icon: "🦾",
-                details: {
-                    paragraphs: [
-                        "Developed a 3D-printed prosthetic hand prototype inspired by human anatomy, featuring five independently actuated fingers with natural grasping motions. The design prioritized lightweight construction and intuitive control.",
-                        "Each finger uses a tendon-driven system with fishing line and servo motors, allowing for adaptive grasping of objects ranging from delicate eggs to heavy tools. The palm incorporates flex sensors for grip force feedback.",
-                        "The prototype weighs only 480 grams and can lift objects up to 5 kg. Future iterations will include EMG sensors for muscle-controlled actuation, bringing the design closer to clinical applications."
-                    ],
-                    images: ["Hand Assembly", "Tendon Routing", "Grip Testing", "Control Electronics"]
-                }
-            },
-            {
-                title: "RC Car",
-                description: "Custom-built remote control vehicle with independent suspension. Reached 45 mph top speed.",
-                tech: "Chassis Design • Suspension Tuning • Electronics",
-                icon: "🏎️",
-                details: {
-                    paragraphs: [
-                        "Built a high-performance RC car from scratch, designing a custom aluminum chassis with independent suspension for optimal handling at speed. The project focused on weight distribution and aerodynamic efficiency.",
-                        "The suspension system features adjustable coilover shocks and anti-roll bars, tuned through extensive testing on various terrain types. The chassis incorporates a low center of gravity and 50/50 weight distribution.",
-                        "Powered by a brushless motor and LiPo battery system, the car achieved a verified top speed of 45 mph. The project enhanced my understanding of vehicle dynamics, suspension geometry, and high-speed stability."
-                    ],
-                    images: ["Chassis Frame", "Suspension Detail", "Speed Testing", "Final Assembly"]
-                }
-            },
-            {
-                title: "Micro Robot Dog",
-                description: "Miniature quadruped robot with dynamic walking gait. Implemented inverse kinematics control.",
-                tech: "Servo Motors • Kinematics • Arduino Programming",
-                icon: "🐕",
-                details: {
-                    paragraphs: [
-                        "Created a palm-sized quadruped robot capable of dynamic walking, trotting, and basic obstacle navigation. The 12-servo design implements biological gait patterns for stable locomotion on uneven surfaces.",
-                        "Developed inverse kinematics algorithms to control leg positioning, enabling the robot to maintain balance while walking. The control system adapts gait parameters based on IMU feedback for improved stability.",
-                        "Despite its 200-gram weight, the robot can carry payloads up to 100 grams while maintaining stable locomotion. The project demonstrated principles of biomimetic design and real-time control systems."
-                    ],
-                    images: ["Robot Assembly", "Leg Mechanism", "Walking Sequence", "Control Board"]
-                }
-            },
-            {
-                title: "Levitating Hydro Generator",
-                description: "Magnetic levitation turbine for micro-hydroelectric power. Achieved frictionless rotation design.",
-                tech: "Magnetic Levitation • Fluid Dynamics • Power Generation",
-                icon: "💧",
-                details: {
-                    paragraphs: [
-                        "Designed a novel micro-hydroelectric generator using magnetic levitation to eliminate bearing friction and increase efficiency. The turbine floats freely in a magnetic field while generating power from water flow.",
-                        "The system uses rare earth magnets arranged in a Halbach array configuration, creating a stable levitation field. Custom-wound copper coils generate electricity as the magnetic rotor spins through the field.",
-                        "Testing achieved 78% efficiency at optimal flow rates, significantly higher than conventional micro-turbines. The frictionless design promises extended operational life and reduced maintenance requirements."
-                    ],
-                    images: ["Magnetic Assembly", "Turbine Blades", "Power Testing", "Flow Visualization"]
-                }
-            },
-            {
-                title: "Ferrari 335s Model",
-                description: "Precision scale model with functional steering and suspension. Hand-crafted aluminum bodywork.",
-                tech: "Metal Fabrication • Scale Modeling • Precision Assembly",
-                icon: "🏁",
-                details: {
-                    paragraphs: [
-                        "Crafted a detailed 1:8 scale model of the legendary Ferrari 335s race car, featuring functional steering, suspension, and opening panels. Every component was designed for both accuracy and mechanical function.",
-                        "The body panels were hand-formed from aluminum sheet using traditional metalworking techniques. The chassis incorporates a working suspension system with coil springs and functional steering linkages.",
-                        "The model took over 200 hours to complete and features over 300 individual parts. It serves as both a display piece and a testament to precision manufacturing and attention to detail."
-                    ],
-                    images: ["Body Panels", "Chassis Detail", "Engine Bay", "Completed Model"]
-                }
-            }
-        ];
-
-        // Typing animation for name
-        function typeWriter(element, text, speed = 100) {
-            let i = 0;
-            element.style.opacity = '1';
-            element.innerHTML = '';
+    <!-- Hero Section -->
+    <section id="hero" class="min-h-full flex items-center justify-center pt-28 pb-16">
+        <div class="max-w-6xl mx-auto px-6 text-center">
+            <div class="slide-up">
+                <h1 class="text-6xl md:text-7xl font-bold text-gray-900 mb-4 name-hover">
+                    Vincent Jarvis
+                </h1>
+                <p class="text-xl md:text-2xl text-blue-600 font-medium mb-6">
+                    Design • Create • Engineer
+                </p>
+                <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+                    Design with purpose, build with passion
+                </p>
+                <button onclick="scrollToSection('projects')" class="btn-hover bg-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-700 transform hover:scale-105">
+                    View My Work
+                </button>
+            </div>
             
-            function type() {
-                if (i < text.length) {
-                    element.innerHTML += text.charAt(i);
-                    i++;
-                    setTimeout(type, speed);
-                }
-            }
-            type();
+            <!-- Image Placeholders -->
+            <div class="slide-up-delay mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="bg-white rounded-xl shadow-lg p-8 hover-lift">
+                    <img src="img/FRCRobot.png" alt="FRC Competition Robot" class="w-full h-64 object-cover rounded-lg">
+                </div>
+                <div class="bg-white rounded-xl shadow-lg p-8 hover-lift">
+                    <img src="img/Tarmo5.png" alt="RC Car Project" class="w-full h-64 object-cover rounded-lg">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="fade-in-right mb-8">
+                <h2 class="text-4xl font-bold text-gray-900 mb-8">About Me</h2>
+            </div>
+            <div class="fade-in-left">
+                <p class="text-lg text-gray-700 leading-relaxed">
+                    I'm a first-year Mechanical Engineering student at the University of Waterloo who loves turning ideas into tangible designs. Whether it's 3D printing a new prototype or refining a CAD model late in the lab, I'm always building something new. Here's a look at some of the projects I've brought from concept to creation.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-gradient-to-br from-slate-50 to-blue-50">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="fade-in-up mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 text-center mb-4">Projects</h2>
+                <p class="text-lg text-gray-600 text-center">Engineering solutions from concept to creation</p>
+            </div>
+            
+            <div class="project-grid">
+                <!-- Project 1: Competitive Robotics -->
+                <div class="fade-in-up bg-white rounded-xl shadow-lg overflow-hidden hover-lift">
+                    <div class="bg-gray-200 h-48 flex items-center justify-center">
+                        <img src="img/FRCBotReal.png" alt="FRC Competition Robot" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-6">
+                        <p class="text-sm text-gray-500 mb-4">Final FRC 2025 Competition Bot</p>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Competitive Robotics (FRC)</h3>
+                        <p class="text-gray-600 mb-4">Built a robot for fast scoring, climbing, and precise object handling. Integrated mechanical, electrical, and programming systems.</p>
+                        <button onclick="openModal('modal1')" class="btn-hover bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 font-medium">
+                            Details
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project 2: Planetary Gearbox -->
+                <div class="fade-in-up bg-white rounded-xl shadow-lg overflow-hidden hover-lift">
+                    <div class="bg-gray-200 h-48 flex items-center justify-center">
+                        <img src="img/TempGearbox.png" alt="Planetary Gearbox" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-6">
+                        <p class="text-sm text-gray-500 mb-4">3D printed prototype with custom bearing assemblies</p>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Planetary Gearbox</h3>
+                        <p class="text-gray-600 mb-4">Designed a miniature gearbox for high torque in limited space. Used planetary gears for efficient load distribution.</p>
+                        <button onclick="openModal('modal2')" class="btn-hover bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 font-medium">
+                            Details
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project 3: Robotic Hand -->
+                <div class="fade-in-up bg-white rounded-xl shadow-lg overflow-hidden hover-lift">
+                    <div class="bg-gray-200 h-48 flex items-center justify-center">
+                        <img src="img/Hand.png" alt="Robotic Hand" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-6">
+                        <p class="text-sm text-gray-500 mb-4">5-DOF design with servo-driven actuation</p>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Robotic Hand</h3>
+                        <p class="text-gray-600 mb-4">Created a compact robotic hand with realistic finger motion. Explored tendon-driven actuation and control.</p>
+                        <button onclick="openModal('modal3')" class="btn-hover bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 font-medium">
+                            Details
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project 4: RC Car -->
+                <div class="fade-in-up bg-white rounded-xl shadow-lg overflow-hidden hover-lift">
+                    <div class="bg-gray-200 h-48 flex items-center justify-center">
+                        <img src="img/Tarmo5.png" alt="RC Car" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-6">
+                        <p class="text-sm text-gray-500 mb-4">Carbon fiber chassis with brushless motor system</p>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">RC Car</h3>
+                        <p class="text-gray-600 mb-4">Enhanced a 3D-printed RC car for off-road use. Added first-person view via a phone-mounted camera.</p>
+                        <button onclick="openModal('modal4')" class="btn-hover bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 font-medium">
+                            Details
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project 5: Micro Robot Dog -->
+                <div class="fade-in-up bg-white rounded-xl shadow-lg overflow-hidden hover-lift">
+                    <div class="bg-gray-200 h-48 flex items-center justify-center">
+                        <img src="img/RoboDog.png" alt="Micro Robot Dog" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-6">
+                        <p class="text-sm text-gray-500 mb-4">12-servo design with IMU-based balance control</p>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Micro Robot Dog</h3>
+                        <p class="text-gray-600 mb-4">Built a small, affordable robot dog. Used elastic support to assist microservo motion.</p>
+                        <button onclick="openModal('modal5')" class="btn-hover bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 font-medium">
+                            Details
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project 6: Levitating Hydro Generator -->
+                <div class="fade-in-up bg-white rounded-xl shadow-lg overflow-hidden hover-lift">
+                    <div class="bg-gray-200 h-48 flex items-center justify-center">
+                        <img src="img/Levitation.png" alt="Levitating Hydro Generator" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-6">
+                        <p class="text-sm text-gray-500 mb-4">Neodymium magnet array with custom turbine design</p>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Levitating Hydro Generator</h3>
+                        <p class="text-gray-600 mb-4">Developed a hydro generator using magnetic levitation. Incorporated a flywheel to maintain smooth rotation.</p>
+                        <button onclick="openModal('modal6')" class="btn-hover bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 font-medium">
+                            Details
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project 7: Ferrari 335s Model -->
+                <div class="fade-in-up bg-white rounded-xl shadow-lg overflow-hidden hover-lift">
+                    <div class="bg-gray-200 h-48 flex items-center justify-center">
+                        <img src="img/Ferrari335s.png" alt="Ferrari 335s Model" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-6">
+                        <p class="text-sm text-gray-500 mb-4">CNC-machined aluminum chassis with detailed bodywork</p>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Ferrari 335s Model</h3>
+                        <p class="text-gray-600 mb-4">Created a scale 3D model of the Ferrari 335s. Focused on accurate curves and advanced CAD surfacing.</p>
+                        <button onclick="openModal('modal7')" class="btn-hover bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 font-medium">
+                            Details
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <div class="fade-in-up">
+                <h2 class="text-4xl font-bold text-gray-900 mb-8">Get In Touch</h2>
+                <p class="text-lg text-gray-700 mb-8">
+                    Interested in working together? Reach me directly by email or download my resume below.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <a href="mailto:vincent.jarvis896@gmail.com" class="btn-hover bg-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-700 transform hover:scale-105">
+                        Email Me
+                    </a>
+                    <button onclick="downloadResume()" class="btn-hover bg-gray-800 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-900 transform hover:scale-105">
+                        Download Resume
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modals for Projects -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal1')">&times;</span>
+            <div class="p-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6">Competitive Robotics (FRC)</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                        <p class="text-gray-500">Insert Robot Action Image</p>
+                    </div>
+                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                        <p class="text-gray-500">Insert Team Photo</p>
+                    </div>
+                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                        <p class="text-gray-500">Insert CAD Model</p>
+                    </div>
+                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                        <p class="text-gray-500">Insert Competition Scene</p>
+                    </div>
+                </div>
+                <div class="space-y-4 text-gray-700">
+                    <p class="font-bold text-lg">The Idea:</p>
+                    <ul class="list-disc pl-5 mb-4">
+                        <li>Create a robust and efficient robot capable of fast scoring, reliable climbing, and precise object handling.</li>
+                        <li>Integrate all mechanical, electrical, and programming systems under a coordinated design workflow.</li>
+                        <li>Balance mechanical complexity with ease of maintenance and competition reliability.</li>
+                    </ul>
+                    
+                    <p class="font-bold text-lg">How?</p>
+                    <ul class="list-disc pl-5 mb-4">
+                        <li>Directed the Design and Build subteam, delegating fabrication and mentoring newer members.</li>
+                        <li>Designed a 3D-angled intake funnel in Onshape with a dual-servo retractable folding mechanism for efficient game piece capture and stowing.</li>
+                        <li>Fabricated a CNC-cut polycarbonate hanging mechanism and developed a two-stage cascade pulley lift powered by dual Kraken X60 motors for rapid extension.</li>
+                    </ul>
+                    
+                    <p class="font-bold text-lg">Results:</p>
+                    <ul class="list-disc pl-5">
+                        <li>Achieved 95% intake reliability with smooth handoffs to the end effector.</li>
+                        <li>Enabled the 115 lb robot to climb onto a swinging low bar in 2.5 seconds.</li>
+                        <li>Delivered a 57" lift extension in 0.25 seconds, supporting a 6.7 kg payload with high structural rigidity and precise motion.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal2" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal2')">&times;</span>
+            <div class="p-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6">Planetary Gearbox</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                        <p class="text-gray-500">Insert Gearbox Assembly</p>
+                    </div>
+                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                        <p class="text-gray-500">Insert Exploded View</p>
+                    </div>
+                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                        <p class="text-gray-500">Insert Testing Setup</p>
+                    </div>
+                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                        <p class="text-gray-500">Insert Performance Graph</p>
+                    </div>
+                </div>
+                <div class="space-y-6 text-gray-700">
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">The Idea</h3>
+                        <p>Design a miniature, high-efficiency gearbox to maximize torque while minimizing space.</p>
+                        <p>Utilize planetary gear configuration for balanced load distribution and smooth motion.</p>
+                        <p>Integrate with a 12V brushed DC motor for practical mechanical testing.</p>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">How?</h3>
+                        <p>Modeled in SolidWorks with custom gear geometry and 0.1 mm print tolerances for precision meshing.</p>
+                        <p>Included 6 bearings, 3 planet gears, and 1 sun gear to achieve compact, stable operation.</p>
+                        <p>Applied multi-material 3D printing and fastened components with 9 embedded screws for rigidity.</p>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Results</h3>
+                        <p>Achieved 5× torque increase and 5× speed reduction from direct motor output.</p>
+                        <p>Delivered 1 mm of precise motion at a 10 cm lever arm with minimal backlash.</p>
+                        <p>Demonstrated an efficient, durable prototype suitable for small-scale robotic applications.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal3" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal3')">&times;</span>
+            <div class="p-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6">Robotic Hand</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                        <p class="text-gray-500">Insert Hand Gripping Object</p>
+                    </div>
+                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                        <p class="text-gray-500">Insert Finger Mechanism</p>
+                    </div>
+                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                        <p class="text-gray-500">Insert Control System</p>
+                    </div>
+                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                        <p class="text-gray-500">Insert Force Sensor Array</p>
+                    </div>
+                </div>
+                <div class="space-y-6 text-gray-700">
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">The Idea</h3>
+                        <p>Create a compact, lifelike robotic hand capable of mimicking human finger movement. Explore tendon-driven actuation for natural motion and smooth flexibility. Design a functional demonstration model built entirely within a weekend timeframe.</p>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">How?</h3>
+                        <p>Modeled all components in Onshape, refining finger geometry for strength and joint precision. Integrated 6 microservos and an Arduino Uno R3 for five programmable hand motions. Tested and iterated multiple elastic and tendon configurations for realistic finger motion and return tension.</p>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Results</h3>
+                        <p>Improved finger strength by 40% through CAD optimization and material tuning. Achieved smooth, controllable actuation using a joystick interface. Completed a fully functional prototype despite material limits, time constraints, and compact design challenges.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal4" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal4')">&times;</span>
+            <div class="p-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6">RC Car</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                        <p class="text-gray-500">Insert RC Car</p>
+                    </div>
+                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                        <p class="text-gray-500">Insert RC Car</p>
+                    </div>
+                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                        <p class="text-gray-500">Insert RC Car</p>
+                    </div>
+                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                        <p class="text-gray-500">Insert RC Car</p>
+                    </div>
+                </div>
+                <div class="space-y-6 text-gray-700">
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">The Idea</h3>
+                        <p>Recreate and enhance a 3D-printed RC car design found online for high-torque off-road use. Add first-person view (FPV) capabilities through a phone-mounted camera system. Experiment with professional CAD practices for large multi-part assemblies in Onshape.</p>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">How?</h3>
+                        <p>Designed custom TPU monster truck wheels with curved tread geometry for maximum grip. Added a modular phone mount for live FPV streaming via screen mirroring. Assembled components with threaded rods, counterbore bolts, and subassemblies for structural rigidity.</p>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Results</h3>
+                        <p>Achieved smooth off-road control with a 1000 kV BLDC motor and 30 kg servo. Improved traction and durability across varied terrain using flexible TPU parts. Learned robust CAD organization, part naming, and design intent—mirroring industry standards.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal5" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal5')">&times;</span>
+            <div class="p-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6">Micro Robot Dog</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                        <p class="text-gray-500">Insert Micro Robot Dog></p>
+                    </div>
+                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                        <p class="text-gray-500">Insert Micro Robot Dog</p>
+                    </div>
+                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                        <p class="text-gray-500">Insert Micro Robot Dog</p>
+                    </div>
+                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                        <p class="text-gray-500">Insert Micro Robot Dog</p>
+                    </div>
+                </div>
+                <div class="space-y-6 text-gray-700">
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">The Idea</h3>
+                        <p>Build an ultra-small, affordable robot dog after finding existing models too expensive. Overcome the power limitations of microservos by distributing load through clever mechanical design. Use elastic support systems to assist servo torque and mimic muscle-like movement.</p>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">How?</h3>
+                        <p>Designed and prototyped a single robotic leg as a proof of concept. Implemented dual diagonal servo actuation with elastic tension sharing the upward load. Tested lifting performance with 3D-printed components and lightweight linkages for structural efficiency.</p>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Results</h3>
+                        <p>Prototype leg successfully lifted 500 g, proving feasibility at small scale. Demonstrated that microservos can achieve realistic motion when aided by elastic support. Project halted before full quadruped completion due to electronics cost and control complexity, but validated key design principles.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal6" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal6')">&times;</span>
+            <div class="p-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6">Levitating Hydro Generator</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                        <p class="text-gray-500">Insert Image></p>
+                    </div>
+                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                        <p class="text-gray-500">Insert Image</p>
+                    </div>
+                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                        <p class="text-gray-500">Insert Image</p>
+                    </div>
+                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                        <p class="text-gray-500">Insert Image</p>
+                    </div>
+                </div>
+                <div class="space-y-6 text-gray-700">
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">The Idea</h3>
+                        <p>Create a high-efficiency hydro generator by eliminating bearing friction through magnetic levitation. Use overengineering as exploration, testing the limits of unconventional generator design. Incorporate a flywheel system to maintain smooth, consistent rotation during operation.</p>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">How?</h3>
+                        <p>Built the frame from 2020 aluminum extrusions for precise alignment and rigidity. Integrated 60 N52 neodymium magnets for levitation and power generation. Wound custom 20 AWG copper coils and coupled them with a high-inertia flywheel for steady energy output.</p>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Results</h3>
+                        <p>Generated a peak power output of 6 W with an overall efficiency of ~5%. Found that magnetic interference between the levitation and generator systems caused major energy losses. Despite inefficiency, the project successfully demonstrated magnetic levitation feasibility in a functional generator setup.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+     <div id="modal7" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal7')">&times;</span>
+            <div class="p-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6">Ferrari 335s Model</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                        <p class="text-gray-500">Insert Image></p>
+                    </div>
+                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                        <p class="text-gray-500">Insert Image</p>
+                    </div>
+                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                        <p class="text-gray-500">Insert Image</p>
+                    </div>
+                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                        <p class="text-gray-500">Insert Image</p>
+                    </div>
+                </div>
+                <div class="space-y-6 text-gray-700">
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">The Idea</h3>
+                        <p>Create a scale 3D-printed model of the Ferrari 335s. Use the project as an opportunity to learn advanced surfacing and design intent in Onshape. Reproduce the cars complex, flowing curves as accurately as possible within one month.</p>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">How?</h3>
+                        <p>Used reference geometry and sketches to match the car’s proportions and curvature. Applied parametric modeling techniques to allow for smooth iteration and refinement. Conducted multiple design revisions to achieve realistic body contours and accurate details.</p>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Results</h3>
+                        <p>Produced a highly accurate 3D model closely resembling the Ferrari 335s. Learned advanced CAD surfacing and curvature control through hands-on experimentation. Final design achieved strong visual realism, with only minor imperfections beyond project scope.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scrolling function
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            const navHeight = 80;
+            const elementPosition = element.offsetTop - navHeight;
+            
+            window.scrollTo({
+                top: elementPosition,
+                behavior: 'smooth'
+            });
         }
 
         // Intersection Observer for animations
@@ -792,192 +666,58 @@
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('animate');
+                    entry.target.classList.add('visible');
                 }
             });
         }, observerOptions);
 
-        // Initialize page
-        function initializePage() {
-            // Start name typing animation
+        // Observe all animated elements
+        document.addEventListener('DOMContentLoaded', () => {
+            const animatedElements = document.querySelectorAll('.fade-in-right, .fade-in-left, .fade-in-up');
+            animatedElements.forEach(el => observer.observe(el));
+        });
 
-            // Populate projects
-            populateProjects();
-
-            // Set up observers
-            document.querySelectorAll('.section-title, .about-content, .contact-content'). forEach(el => {
-                observer.observe(el);
-            });
-
-            // Set up project card observers
-            setTimeout(() => {
-                document.querySelectorAll('.project-card').forEach((card, index) => {
-                    card.style.animationDelay = `${index * 0.2}s`;
-                    observer.observe(card);
-                });
-            }, 100);
-
-            // Smooth scrolling
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                });
-            });
-
-            // Progress bar
-            window.addEventListener('scroll', updateProgressBar);
-        }
-
-        function populateProjects() {
-            const grid = document.getElementById('projectsGrid');
-            grid.innerHTML = '';
-            
-            projects.forEach((project, index) => {
-                const card = document.createElement('div');
-                card.className = 'project-card';
-                card.innerHTML = `
-                    <div class="project-icon">${project.icon}</div>
-                    <h3 class="project-title">${project.title}</h3>
-                    <p class="project-description">${project.description}</p>
-                    <p class="project-tech">${project.tech}</p>
-                    <button class="details-button" onclick="openModal(${index})">View Details</button>
-                `;
-                grid.appendChild(card);
-            });
-        }
-
-        function openModal(projectIndex) {
-            const project = projects[projectIndex];
-            const modal = document.getElementById('projectModal');
-            const modalTitle = document.getElementById('modalTitle');
-            const modalBody = document.getElementById('modalBody');
-
-            modalTitle.textContent = project.title;
-            
-            let imagesHTML = '<div class="modal-images">';
-            project.details.images.forEach(image => {
-                imagesHTML += `<div class="modal-image">${image}</div>`;
-            });
-            imagesHTML += '</div>';
-
-            let paragraphsHTML = '';
-            project.details.paragraphs.forEach(paragraph => {
-                paragraphsHTML += `<p style="margin-bottom: 1.5rem; line-height: 1.6; color: #555;">${paragraph}</p>`;
-            });
-
-            modalBody.innerHTML = paragraphsHTML + imagesHTML;
-            
-            modal.classList.add('show');
+        // Modal functions
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
             document.body.style.overflow = 'hidden';
         }
 
-        function closeModal() {
-            const modal = document.getElementById('projectModal');
-            modal.classList.remove('show');
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
             document.body.style.overflow = 'auto';
         }
 
-        function downloadResume() {
-            // Create a simple resume content
-            const resumeContent = `
-Vincent Jarvis - Mechanical Engineering Portfolio
-
-Education:
-- University of Waterloo, Mechanical Engineering (First Year)
-
-Projects:
-${projects.map(p => `- ${p.title}: ${p.description}`).join('\n')}
-
-Contact: vincent.jarvis896@gmail.com
-            `;
-            
-            const blob = new Blob([resumeContent], { type: 'text/plain' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'Vincent_Jarvis_Resume.txt';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-        }
-
-        function updateProgressBar() {
-            const scrollTop = window.pageYOffset;
-            const docHeight = document.body.offsetHeight - window.innerHeight;
-            const scrollPercent = (scrollTop / docHeight) * 100;
-            document.getElementById('progressBar').style.width = scrollPercent + '%';
-        }
-
         // Close modal when clicking outside
-        document.getElementById('projectModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeModal();
-            }
-        });
-
-        // Render function for Element SDK
-        async function render(config) {
-            // Update name in hero and nav
-            const heroName = document.getElementById('heroName');
-            const navBrand = document.getElementById('navBrand');
-            const name = config.name || defaultConfig.name;
-            
-            if (heroName) heroName.textContent = name;
-            if (navBrand) navBrand.textContent = name;
-
-            // Update subtitle
-            const heroSubtitle = document.getElementById('heroSubtitle');
-            if (heroSubtitle) heroSubtitle.textContent = config.subtitle || defaultConfig.subtitle;
-
-            // Update motto
-            const heroMotto = document.getElementById('heroMotto');
-            if (heroMotto) heroMotto.textContent = config.motto || defaultConfig.motto;
-
-            // Update about text
-            const aboutText = document.getElementById('aboutText');
-            if (aboutText) aboutText.textContent = config.about_text || defaultConfig.about_text;
-
-            // Update contact text
-            const contactText = document.getElementById('contactText');
-            if (contactText) contactText.textContent = config.contact_text || defaultConfig.contact_text;
-
-            // Update email
-            const emailButton = document.getElementById('emailButton');
-            if (emailButton) emailButton.href = `mailto:${config.email || defaultConfig.email}`;
-        }
-
-        // Element SDK implementation
-        if (window.elementSdk) {
-            window.elementSdk.init({
-                defaultConfig: defaultConfig,
-                render: render,
-                mapToCapabilities: (config) => ({
-                    recolorables: [],
-                    borderables: [],
-                    fontEditable: undefined,
-                    fontSizeable: undefined
-                }),
-                mapToEditPanelValues: (config) => new Map([
-                    ["name", config.name || defaultConfig.name],
-                    ["subtitle", config.subtitle || defaultConfig.subtitle],
-                    ["motto", config.motto || defaultConfig.motto],
-                    ["about_text", config.about_text || defaultConfig.about_text],
-                    ["email", config.email || defaultConfig.email],
-                    ["contact_text", config.contact_text || defaultConfig.contact_text]
-                ])
+        window.onclick = function(event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
             });
         }
 
-        // Initialize when page loads
-        document.addEventListener('DOMContentLoaded', initializePage);
+        // Resume download function - opens in new tab
+        function downloadResume() {
+            // Path to your resume file
+            const resumeUrl = 'Vincent_Jarvis_Resume.pdf';
+            
+            // Open in new tab
+            window.open(resumeUrl, '_blank');
+        }
+
+        // Add keyboard navigation for modals
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const openModals = document.querySelectorAll('.modal[style*="block"]');
+                openModals.forEach(modal => {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                });
+            }
+        });
     </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99133c77e1f5aaf8',t:'MTc2MDkwNzk1My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9953ddee63cf39fd',t:'MTc2MTU4NTY1Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
