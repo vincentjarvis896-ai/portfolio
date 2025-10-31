@@ -5,25 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vincent Jarvis - Mechanical Engineering Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Import Raleway font first -->
+    <link href="https://fonts.googleapis.com/css2?family=Chakra Petch:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
             box-sizing: border-box;
+            font-family: 'Chakra Petch', sans-serif;
         }
         
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        
         * {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Chakra Petch', sans-serif !important;
         }
         
         .slide-up {
-            opacity: 0;
             transform: translateY(50px);
             animation: slideUp 1s ease-out forwards;
         }
-        
+
         .slide-up-delay {
-            opacity: 0;
             transform: translateY(50px);
             animation: slideUp 1s ease-out 0.3s forwards;
         }
@@ -97,6 +96,16 @@
             transform: scale(1.05);
             text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
         }
+
+        .nav-link-hover {
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: pointer;
+        }
+
+        .nav-link-hover:hover {
+            transform: scale(1.1);
+            text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+        }
         
         .modal {
             display: none;
@@ -158,9 +167,220 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* Intro Animation Overlay */
+        .intro-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 1s ease-out;
+        }
+
+        .intro-overlay.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .intro-container {
+            width: 90%;
+            max-width: 800px;
+            height: 200px;
+            position: relative;
+        }
+
+        .intro-svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .intro-stroke {
+            fill: none;
+            stroke: #2c3e50;
+            stroke-width: 4;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+        }
+
+        /* Sequential animation for each stroke - adjusted timing */
+        .intro-stroke-1 { animation: intro-draw 0.4s ease-in-out 0.1s forwards; }
+        .intro-stroke-2 { animation: intro-draw 0.4s ease-in-out 0.2s forwards; }
+        .intro-stroke-3 { animation: intro-draw 0.4s ease-in-out 0.3s forwards; }
+        .intro-stroke-4 { animation: intro-draw 0.4s ease-in-out 0.4s forwards; }
+        .intro-stroke-5 { animation: intro-draw 0.4s ease-in-out 0.5s forwards; }
+        .intro-stroke-6 { animation: intro-draw 0.4s ease-in-out 0.6s forwards; }
+        .intro-stroke-7 { animation: intro-draw 0.8s ease-in-out 0.7s forwards; }
+        .intro-stroke-8 { animation: intro-draw 0.4s ease-in-out 0.8s forwards; }
+        .intro-stroke-9 { animation: intro-draw 0.4s ease-in-out 0.9s forwards; }
+        .intro-stroke-10 { animation: intro-draw 0.4s ease-in-out 1.0s forwards; }
+        .intro-stroke-11 { animation: intro-draw 0.4s ease-in-out 1.1s forwards; }
+        .intro-stroke-12 { animation: intro-draw 0.4s ease-in-out 1.2s forwards; }
+        .intro-stroke-13 { animation: intro-draw 0.4s ease-in-out 1.3s forwards; }
+        .intro-stroke-14 { animation: intro-draw 0.4s ease-in-out 1.4s forwards; }
+        .intro-stroke-15 { animation: intro-draw 0.4s ease-in-out 1.5s forwards; }
+        .intro-stroke-16 { animation: intro-draw 0.4s ease-in-out 1.6s forwards; }
+        .intro-stroke-17 { animation: intro-draw 0.4s ease-in-out 1.7s forwards; }
+        .intro-stroke-18 { animation: intro-draw 0.4s ease-in-out 1.8s forwards; }
+        .intro-stroke-19 { animation: intro-draw 0.4s ease-in-out 1.9s forwards; }
+        .intro-stroke-20 { animation: intro-draw 0.4s ease-in-out 2.0s forwards; }
+        .intro-stroke-21 { animation: intro-draw 0.4s ease-in-out 2.1s forwards; }
+        .intro-stroke-22 { animation: intro-draw 0.4s ease-in-out 2.2s forwards; }
+        .intro-stroke-23 { animation: intro-draw 0.4s ease-in-out 2.3s forwards; }
+        .intro-stroke-24 { animation: intro-draw 0.4s ease-in-out 2.4s forwards; }
+        .intro-stroke-25 { animation: intro-draw 0.4s ease-in-out 2.5s forwards; }
+        .intro-stroke-26 { animation: intro-draw 0.4s ease-in-out 2.6s forwards; }
+        .intro-stroke-27 { animation: intro-draw 0.4s ease-in-out 2.7s forwards; }
+        .intro-stroke-28 { animation: intro-draw 0.4s ease-in-out 2.8s forwards; }
+        .intro-stroke-29 { animation: intro-draw 0.4s ease-in-out 2.9s forwards; }
+        .intro-stroke-30 { animation: intro-draw 0.4s ease-in-out 3.0s forwards; }
+        .intro-stroke-31 { animation: intro-draw 0.4s ease-in-out 3.1s forwards; }
+        .intro-stroke-32 { animation: intro-draw 0.4s ease-in-out 3.2s forwards; }
+        .intro-stroke-33 { animation: intro-draw 0.4s ease-in-out 3.3s forwards; }
+
+        @keyframes intro-draw {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        /* Hide slide-up elements until intro completes */
+        .slide-up, .slide-up-delay {
+            opacity: 0;
+        }
+
+        /* Grid Background for Intro */
+        .intro-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(90deg, rgba(59, 130, 246, 0.15) 1px, transparent 1px),
+                linear-gradient(0deg, rgba(59, 130, 246, 0.15) 1px, transparent 1px);
+            background-size: 30px 30px;
+            background-position: 0px 4px; /* Change this value to shift grid up/down */
+            animation: zoomInGrid 4s ease-in-out forwards;
+            opacity: 0;
+            transform: scale(1.5);
+        }
+
+        @keyframes zoomInGrid {
+            0% {
+                opacity: 0;
+                transform: scale(1.5);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Optional: Add some subtle movement */
+        .intro-grid::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, transparent 0%, rgba(255,255,255,0.9) 100%);
+            animation: pulseGrid 4s ease-in-out infinite;
+        }
+
+        @keyframes pulseGrid {
+            0%, 100% {
+                opacity: 0.5;
+            }
+            50% {
+                opacity: 0.3;
+            }
+        }
+
     </style>
 </head>
 <body class="bg-gradient-to-br from-slate-50 to-blue-50 min-h-full">
+    
+    <!-- Intro Animation Overlay -->
+    <div id="introOverlay" class="intro-overlay">
+        <div class="intro-grid"></div>
+        <div class="intro-container">
+            <svg class="intro-svg" viewBox="0 0 1600 200" xmlns="http://www.w3.org/2000/svg">
+                <!-- V -->
+                <path class="intro-stroke intro-stroke-1" d="M10 40 L70 160"/>
+                <path class="intro-stroke intro-stroke-2" d="M130 40 L70 160"/>
+                
+                <!-- I -->
+                <path class="intro-stroke intro-stroke-3" d="M160 40 L160 160"/>
+                
+                <!-- N -->
+                <path class="intro-stroke intro-stroke-4" d="M200 40 L200 160"/>
+                <path class="intro-stroke intro-stroke-5" d="M305 40 L305 160"/>
+                <path class="intro-stroke intro-stroke-6" d="M200 40 L305 160"/>
+                
+                <!-- C -->
+                <path class="intro-stroke intro-stroke-7" d="M395 40 A60 60 0 0 0 395 160 A60 60 0 0 0 435 145"/>
+                <path class="intro-stroke intro-stroke-8" d="M435 55 A60 60 0 0 0 395 40"/>
+                
+                <!-- E -->
+                <path class="intro-stroke intro-stroke-9" d="M470 40 L470 160"/>
+                <path class="intro-stroke intro-stroke-10" d="M470 160 L550 160"/>
+                <path class="intro-stroke intro-stroke-11" d="M470 40 L550 40"/>
+                <path class="intro-stroke intro-stroke-12" d="M470 100 L530 100"/>
+                
+                <!-- N -->
+                <path class="intro-stroke intro-stroke-13" d="M580 40 L580 160"/>
+                <path class="intro-stroke intro-stroke-14" d="M680 40 L680 160"/>
+                <path class="intro-stroke intro-stroke-15" d="M580 40 L680 160"/>
+                
+                <!-- T -->
+                <path class="intro-stroke intro-stroke-17" d="M710 40 L800 40"/>
+                <path class="intro-stroke intro-stroke-18" d="M755 40 L755 160"/>
+                
+                <!-- Space between first and last name -->
+                
+                <!-- J -->
+                <path class="intro-stroke intro-stroke-19" d="M1000 40 L1000 120"/>
+                <path class="intro-stroke intro-stroke-20" d="M1000 120 A50 40 0 0 1 900 120"/>
+                
+                <!-- A -->
+                <path class="intro-stroke intro-stroke-21" d="M1080 40 L1020 160"/>
+                <path class="intro-stroke intro-stroke-22" d="M1080 40 L1140 160"/>
+                <path class="intro-stroke intro-stroke-23" d="M1045 110 L1115 110"/>
+                
+                <!-- R -->
+                <path class="intro-stroke intro-stroke-24" d="M1160 40 L1160 160"/>
+                <path class="intro-stroke intro-stroke-25" d="M1160 100 L1220 100"/>
+                <path class="intro-stroke intro-stroke-26" d="M1160 40 L1220 40 A30 30 0 0 1 1220 100"/>
+                <path class="intro-stroke intro-stroke-27" d="M1220 100 L1250 160"/>
+                
+                <!-- V -->
+                <path class="intro-stroke intro-stroke-28" d="M1280 40 L1330 160"/>
+                <path class="intro-stroke intro-stroke-29" d="M1380 40 L1330 160"/>
+
+                <!-- I -->
+                <path class="intro-stroke intro-stroke-30" d="M1410 40 L1410 160"/>
+                
+                <!-- S -->
+                <path class="intro-stroke intro-stroke-31" d="M1450 65 A40 25 0 0 1 1530 65"/>
+                <path class="intro-stroke intro-stroke-32" d="M1450 65 A 40 25 0 0 0 1490 90 A50 35 0 0 1 1490 160"/>
+                <path class="intro-stroke intro-stroke-33" d="M1440 125 A50 35 0 0 0 1490 160"/>
+            </svg>
+        </div>
+    </div>
+
     <!-- Navigation -->
     <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 shadow-sm">
         <div class="max-w-6xl mx-auto px-6 py-4">
@@ -168,10 +388,10 @@
                 <div class="name-hover text-2xl font-bold text-blue-600" onclick="scrollToSection('hero')">
                     Vincent Jarvis
                 </div>
-                <div class="flex space-x-8">
-                    <a href="#about" onclick="scrollToSection('about')" class="text-gray-700 hover:text-blue-600 transition-colors duration-300 font-medium">About</a>
-                    <a href="#projects" onclick="scrollToSection('projects')" class="text-gray-700 hover:text-blue-600 transition-colors duration-300 font-medium">Projects</a>
-                    <a href="#contact" onclick="scrollToSection('contact')" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-300 font-medium">Contact</a>
+                <div class="flex space-x-6 items-center">
+                    <a href="#about" onclick="scrollToSection('about'); return false;" class="nav-link-hover text-gray-700 hover:text-blue-600 font-medium">About</a>
+                    <a href="#projects" onclick="scrollToSection('projects'); return false;" class="nav-link-hover text-gray-700 hover:text-blue-600 font-medium">Projects</a>
+                    <a href="#contact" onclick="scrollToSection('contact'); return false;" class="btn-hover bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-300 font-medium">Contact</a>
                 </div>
             </div>
         </div>
@@ -181,7 +401,7 @@
     <section id="hero" class="min-h-full flex items-center justify-center pt-28 pb-16">
         <div class="max-w-6xl mx-auto px-6 text-center">
             <div class="slide-up">
-                <h1 class="text-6xl md:text-7xl font-bold text-gray-900 mb-4 name-hover">
+                <h1 class="text-6xl md:text-7xl font-bold text-gray-900 mb-4 name-hover" onclick="scrollToSection('about')">
                     Vincent Jarvis
                 </h1>
                 <p class="text-xl md:text-2xl text-blue-600 font-medium mb-6">
@@ -197,11 +417,11 @@
             
             <!-- Image Placeholders -->
             <div class="slide-up-delay mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                <div class="bg-white rounded-xl shadow-lg p-8 hover-lift">
-                    <img src="img/FRCRobot.png" alt="FRC Competition Robot" class="w-full h-64 object-cover rounded-lg">
+                <div class="bg-white rounded-xl shadow-lg p-8 hover-lift cursor-pointer" onclick="scrollAndOpenProject('projects', 'modal1')">
+                    <img src="img/FRCRobot.png" alt="FRC Competition Robot" class="w-full h-64 object-contain rounded-lg">
                 </div>
-                <div class="bg-white rounded-xl shadow-lg p-8 hover-lift">
-                    <img src="img/Tarmo5.png" alt="RC Car Project" class="w-full h-64 object-cover rounded-lg">
+                <div class="bg-white rounded-xl shadow-lg p-8 hover-lift cursor-pointer" onclick="scrollAndOpenProject('projects', 'modal4')">
+                    <img src="img/Tarmo5.png" alt="RC Car Project" class="w-full h-64 object-contain rounded-lg">
                 </div>
             </div>
         </div>
@@ -215,15 +435,15 @@
             </div>
             <div class="fade-in-left">
                 <p class="text-lg text-gray-700 leading-relaxed">
-                    I'm a first-year Mechanical Engineering student at the University of Waterloo who loves turning ideas into tangible designs. Whether it's 3D printing a new prototype or refining a CAD model late in the lab, I'm always building something new. Here's a look at some of the projects I've brought from concept to creation.
+                    I'm a first-year Mechanical Engineering student at the University of Waterloo who loves turning ideas into tangible designs. Whether it's 3D printing a new prototype or refining a CAD model late in the design lab, I'm always building something new. Here's a look at some of the projects I've brought from concept to creation.
                 </p>
             </div>
         </div>
     </section>
 
-    <!-- Projects Section -->
+        <!-- Projects Section -->
     <section id="projects" class="py-20 bg-gradient-to-br from-slate-50 to-blue-50">
-        <div class="max-w-6xl mx-auto px-6">
+        <div class="max-w-7xl mx-auto px-6 text-center">
             <div class="fade-in-up mb-16">
                 <h2 class="text-4xl font-bold text-gray-900 text-center mb-4">Projects</h2>
                 <p class="text-lg text-gray-600 text-center">Engineering solutions from concept to creation</p>
@@ -231,109 +451,95 @@
             
             <div class="project-grid">
                 <!-- Project 1: Competitive Robotics -->
-                <div class="fade-in-up bg-white rounded-xl shadow-lg overflow-hidden hover-lift">
-                    <div class="bg-gray-200 h-48 flex items-center justify-center">
-                        <img src="img/FRCBotReal.png" alt="FRC Competition Robot" class="w-full h-48 object-cover">
+                <div class="fade-in-up bg-white rounded-xl shadow-lg overflow-hidden hover-lift cursor-pointer" onclick="openModal('modal1')">
+                    <div class="bg-white h-[26rem] flex items-center justify-center">
+                        <img src="img/FRCBotReal.png" alt="FRC Competition Robot" class="w-full h-[26rem] object-contain">
                     </div>
                     <div class="p-6">
                         <p class="text-sm text-gray-500 mb-4">Final FRC 2025 Competition Bot</p>
                         <h3 class="text-xl font-bold text-gray-900 mb-2">Competitive Robotics (FRC)</h3>
                         <p class="text-gray-600 mb-4">Built a robot for fast scoring, climbing, and precise object handling. Integrated mechanical, electrical, and programming systems.</p>
-                        <button onclick="openModal('modal1')" class="btn-hover bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 font-medium">
+                        <div class="btn-hover bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 font-medium inline-block">
                             Details
-                        </button>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Project 2: Planetary Gearbox -->
-                <div class="fade-in-up bg-white rounded-xl shadow-lg overflow-hidden hover-lift">
-                    <div class="bg-gray-200 h-48 flex items-center justify-center">
-                        <img src="img/TempGearbox.png" alt="Planetary Gearbox" class="w-full h-48 object-cover">
+                <div class="fade-in-up bg-white rounded-xl shadow-lg overflow-hidden hover-lift cursor-pointer" onclick="openModal('modal2')">
+                    <div class="bg-white h-[26rem] flex items-center justify-center">
+                        <img src="img/Gearbox.png" alt="Planetary Gearbox" class="w-full h-[26rem] object-contain">
                     </div>
                     <div class="p-6">
                         <p class="text-sm text-gray-500 mb-4">3D printed prototype with custom bearing assemblies</p>
                         <h3 class="text-xl font-bold text-gray-900 mb-2">Planetary Gearbox</h3>
                         <p class="text-gray-600 mb-4">Designed a miniature gearbox for high torque in limited space. Used planetary gears for efficient load distribution.</p>
-                        <button onclick="openModal('modal2')" class="btn-hover bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 font-medium">
+                        <div class="btn-hover bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 font-medium inline-block">
                             Details
-                        </button>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Project 3: Robotic Hand -->
-                <div class="fade-in-up bg-white rounded-xl shadow-lg overflow-hidden hover-lift">
-                    <div class="bg-gray-200 h-48 flex items-center justify-center">
-                        <img src="img/Hand.png" alt="Robotic Hand" class="w-full h-48 object-cover">
+                <div class="fade-in-up bg-white rounded-xl shadow-lg overflow-hidden hover-lift cursor-pointer" onclick="openModal('modal3')">
+                    <div class="bg-white h-[26rem] flex items-center justify-center">
+                        <img src="img/Hand.png" alt="Robotic Hand" class="w-full h-[26rem] object-contain">
                     </div>
                     <div class="p-6">
                         <p class="text-sm text-gray-500 mb-4">5-DOF design with servo-driven actuation</p>
                         <h3 class="text-xl font-bold text-gray-900 mb-2">Robotic Hand</h3>
                         <p class="text-gray-600 mb-4">Created a compact robotic hand with realistic finger motion. Explored tendon-driven actuation and control.</p>
-                        <button onclick="openModal('modal3')" class="btn-hover bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 font-medium">
+                        <div class="btn-hover bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 font-medium inline-block">
                             Details
-                        </button>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Project 4: RC Car -->
-                <div class="fade-in-up bg-white rounded-xl shadow-lg overflow-hidden hover-lift">
-                    <div class="bg-gray-200 h-48 flex items-center justify-center">
-                        <img src="img/Tarmo5.png" alt="RC Car" class="w-full h-48 object-cover">
+                <div class="fade-in-up bg-white rounded-xl shadow-lg overflow-hidden hover-lift cursor-pointer" onclick="openModal('modal4')">
+                    <div class="bg-white h-[26rem] flex items-center justify-center">
+                        <img src="img/Tarmo5.png" alt="RC Car" class="w-full h-[26rem] object-contain">
                     </div>
                     <div class="p-6">
-                        <p class="text-sm text-gray-500 mb-4">Carbon fiber chassis with brushless motor system</p>
+                        <p class="text-sm text-gray-500 mb-4">30kg servo with brushless motor drive system</p>
                         <h3 class="text-xl font-bold text-gray-900 mb-2">RC Car</h3>
                         <p class="text-gray-600 mb-4">Enhanced a 3D-printed RC car for off-road use. Added first-person view via a phone-mounted camera.</p>
-                        <button onclick="openModal('modal4')" class="btn-hover bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 font-medium">
+                        <div class="btn-hover bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 font-medium inline-block">
                             Details
-                        </button>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Project 5: Micro Robot Dog -->
-                <div class="fade-in-up bg-white rounded-xl shadow-lg overflow-hidden hover-lift">
-                    <div class="bg-gray-200 h-48 flex items-center justify-center">
-                        <img src="img/RoboDog.png" alt="Micro Robot Dog" class="w-full h-48 object-cover">
+                <div class="fade-in-up bg-white rounded-xl shadow-lg overflow-hidden hover-lift cursor-pointer" onclick="openModal('modal5')">
+                    <div class="bg-white h-[26rem] flex items-center justify-center">
+                        <img src="img/RoboDog.png" alt="Micro Robot Dog" class="w-full h-[26rem] object-contain">
                     </div>
                     <div class="p-6">
-                        <p class="text-sm text-gray-500 mb-4">12-servo design with IMU-based balance control</p>
+                        <p class="text-sm text-gray-500 mb-4">12-servo lightweight design</p>
                         <h3 class="text-xl font-bold text-gray-900 mb-2">Micro Robot Dog</h3>
                         <p class="text-gray-600 mb-4">Built a small, affordable robot dog. Used elastic support to assist microservo motion.</p>
-                        <button onclick="openModal('modal5')" class="btn-hover bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 font-medium">
+                        <div class="btn-hover bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 font-medium inline-block">
                             Details
-                        </button>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Project 6: Levitating Hydro Generator -->
-                <div class="fade-in-up bg-white rounded-xl shadow-lg overflow-hidden hover-lift">
-                    <div class="bg-gray-200 h-48 flex items-center justify-center">
-                        <img src="img/Levitation.png" alt="Levitating Hydro Generator" class="w-full h-48 object-cover">
+                <div class="fade-in-up bg-white rounded-xl shadow-lg overflow-hidden hover-lift cursor-pointer" onclick="openModal('modal6')">
+                    <div class="bg-white h-[26rem] flex items-center justify-center">
+                        <img src="img/Levitation.png" alt="Levitating Hydro Generator" class="w-full h-[26rem] object-contain">
                     </div>
                     <div class="p-6">
-                        <p class="text-sm text-gray-500 mb-4">Neodymium magnet array with custom turbine design</p>
+                        <p class="text-sm text-gray-500 mb-4">N52 Neodymium magnet array with custom turbine design</p>
                         <h3 class="text-xl font-bold text-gray-900 mb-2">Levitating Hydro Generator</h3>
                         <p class="text-gray-600 mb-4">Developed a hydro generator using magnetic levitation. Incorporated a flywheel to maintain smooth rotation.</p>
-                        <button onclick="openModal('modal6')" class="btn-hover bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 font-medium">
+                        <div class="btn-hover bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 font-medium inline-block">
                             Details
-                        </button>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Project 7: Ferrari 335s Model -->
-                <div class="fade-in-up bg-white rounded-xl shadow-lg overflow-hidden hover-lift">
-                    <div class="bg-gray-200 h-48 flex items-center justify-center">
-                        <img src="img/Ferrari335s.png" alt="Ferrari 335s Model" class="w-full h-48 object-cover">
-                    </div>
-                    <div class="p-6">
-                        <p class="text-sm text-gray-500 mb-4">CNC-machined aluminum chassis with detailed bodywork</p>
-                        <h3 class="text-xl font-bold text-gray-900 mb-2">Ferrari 335s Model</h3>
-                        <p class="text-gray-600 mb-4">Created a scale 3D model of the Ferrari 335s. Focused on accurate curves and advanced CAD surfacing.</p>
-                        <button onclick="openModal('modal7')" class="btn-hover bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 font-medium">
-                            Details
-                        </button>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -366,16 +572,16 @@
                 <h2 class="text-3xl font-bold text-gray-900 mb-6">Competitive Robotics (FRC)</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                     <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
-                        <p class="text-gray-500">Insert Robot Action Image</p>
+                        <img src="img/FRCBotReal.png" alt="FRC Robot Full View Real" class="w-full h-full object-contain">
                     </div>
                     <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
-                        <p class="text-gray-500">Insert Team Photo</p>
+                        <img src="img/FRCRobot.png" alt="FRC Robot Full View" class="w-full h-full object-contain">
                     </div>
                     <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
-                        <p class="text-gray-500">Insert CAD Model</p>
+                        <img src="img/FRCcadExtend.png" alt="FRC Robot Full Extension" class="w-full h-full object-contain">
                     </div>
                     <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
-                        <p class="text-gray-500">Insert Competition Scene</p>
+                        <img src="img/FRCcadBase.png" alt="FRC Robot Intial Base Design" class="w-full h-full object-contain">
                     </div>
                 </div>
                 <div class="space-y-4 text-gray-700">
@@ -411,16 +617,16 @@
                 <h2 class="text-3xl font-bold text-gray-900 mb-6">Planetary Gearbox</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                     <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
-                        <p class="text-gray-500">Insert Gearbox Assembly</p>
+                        <p class="text-gray-500">Coming Soon</p>
                     </div>
                     <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
-                        <p class="text-gray-500">Insert Exploded View</p>
+                        <p class="text-gray-500">Coming Soon</p>
                     </div>
                     <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
-                        <p class="text-gray-500">Insert Testing Setup</p>
+                        <p class="text-gray-500">Coming Soon</p>
                     </div>
                     <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
-                        <p class="text-gray-500">Insert Performance Graph</p>
+                        <p class="text-gray-500">Coming Soon</p>
                     </div>
                 </div>
                 <div class="space-y-6 text-gray-700">
@@ -456,16 +662,16 @@
                 <h2 class="text-3xl font-bold text-gray-900 mb-6">Robotic Hand</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                     <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
-                        <p class="text-gray-500">Insert Hand Gripping Object</p>
+                        <img src="img/Hand.png" alt="Robotic Hand Full Open" class="w-full h-full object-contain">
                     </div>
                     <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
-                        <p class="text-gray-500">Insert Finger Mechanism</p>
+                        <img src="img/HandCAD.png" alt="Robotic Hand CAD" class="w-full h-full object-contain">
                     </div>
                     <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
-                        <p class="text-gray-500">Insert Control System</p>
+                        <img src="img/HandFist.png" alt="Robotic Hand Closed" class="w-full h-full object-contain">
                     </div>
                     <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
-                        <p class="text-gray-500">Insert Force Sensor Array</p>
+                        <img src="img/HandGun.png" alt="Robotic Hand Gun Shape" class="w-full h-full object-contain">
                     </div>
                 </div>
                 <div class="space-y-6 text-gray-700">
@@ -495,16 +701,16 @@
                 <h2 class="text-3xl font-bold text-gray-900 mb-6">RC Car</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                     <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
-                        <p class="text-gray-500">Insert RC Car</p>
+                        <img src="img/Tarmo5.png" alt="RC Car" class="w-full h-full object-contain">
                     </div>
                     <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
-                        <p class="text-gray-500">Insert RC Car</p>
+                        <img src="img/Tarmo5Full.png" alt="RC Car" class="w-full h-full object-contain">
                     </div>
                     <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
-                        <p class="text-gray-500">Insert RC Car</p>
+                        <img src="img/Tarmo5Top.png" alt="RC Car" class="w-full h-full object-contain">
                     </div>
                     <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
-                        <p class="text-gray-500">Insert RC Car</p>
+                        <img src="img/Tarmo5Camera.png" alt="RC Car" class="w-full h-full object-contain">
                     </div>
                 </div>
                 <div class="space-y-6 text-gray-700">
@@ -534,16 +740,22 @@
                 <h2 class="text-3xl font-bold text-gray-900 mb-6">Micro Robot Dog</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                     <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
-                        <p class="text-gray-500">Insert Micro Robot Dog></p>
+                        <img src="img/RoboDog.png" alt="Robot Dog" class="w-full h-full object-contain">
                     </div>
                     <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
-                        <p class="text-gray-500">Insert Micro Robot Dog</p>
+                        <img src="img/DogLegs.png" alt="Robot Dog" class="w-full h-full object-contain">
                     </div>
                     <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
-                        <p class="text-gray-500">Insert Micro Robot Dog</p>
+                        <video controls class="w-full h-full object-contain">
+                            <source src="img/DogRun.mov" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
                     </div>
                     <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
-                        <p class="text-gray-500">Insert Micro Robot Dog</p>
+                        <video controls class="w-full h-full object-contain">
+                            <source src="img/DogWalk.mov" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
                     </div>
                 </div>
                 <div class="space-y-6 text-gray-700">
@@ -573,16 +785,22 @@
                 <h2 class="text-3xl font-bold text-gray-900 mb-6">Levitating Hydro Generator</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                     <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
-                        <p class="text-gray-500">Insert Image></p>
+                        <img src="img/GenReal.png" alt="Levitating Generator" class="w-full h-full object-contain">
                     </div>
                     <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
-                        <p class="text-gray-500">Insert Image</p>
+                        <img src="img/Levitation.png" alt="Levitating Generator" class="w-full h-full object-contain">
                     </div>
                     <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
-                        <p class="text-gray-500">Insert Image</p>
+                       <video controls class="w-full h-full object-contain">
+                            <source src="img/GenFullVid.mov" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
                     </div>
                     <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
-                        <p class="text-gray-500">Insert Image</p>
+                        <video controls class="w-full h-full object-contain">
+                            <source src="img/GenStableVid.mov" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
                     </div>
                 </div>
                 <div class="space-y-6 text-gray-700">
@@ -605,46 +823,40 @@
         </div>
     </div>
 
-     <div id="modal7" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('modal7')">&times;</span>
-            <div class="p-8">
-                <h2 class="text-3xl font-bold text-gray-900 mb-6">Ferrari 335s Model</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
-                        <p class="text-gray-500">Insert Image></p>
-                    </div>
-                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
-                        <p class="text-gray-500">Insert Image</p>
-                    </div>
-                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
-                        <p class="text-gray-500">Insert Image</p>
-                    </div>
-                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
-                        <p class="text-gray-500">Insert Image</p>
-                    </div>
-                </div>
-                <div class="space-y-6 text-gray-700">
-                    <div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">The Idea</h3>
-                        <p>Create a scale 3D-printed model of the Ferrari 335s. Use the project as an opportunity to learn advanced surfacing and design intent in Onshape. Reproduce the cars complex, flowing curves as accurately as possible within one month.</p>
-                    </div>
-                    
-                    <div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">How?</h3>
-                        <p>Used reference geometry and sketches to match the car’s proportions and curvature. Applied parametric modeling techniques to allow for smooth iteration and refinement. Conducted multiple design revisions to achieve realistic body contours and accurate details.</p>
-                    </div>
-                    
-                    <div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">Results</h3>
-                        <p>Produced a highly accurate 3D model closely resembling the Ferrari 335s. Learned advanced CAD surfacing and curvature control through hands-on experimentation. Final design achieved strong visual realism, with only minor imperfections beyond project scope.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script>
+        // Handle intro animation
+        function handleIntroAnimation() {
+            const introOverlay = document.getElementById('introOverlay');
+            
+            // Wait for animation to complete (3.3s + buffer)
+            setTimeout(() => {
+                introOverlay.classList.add('fade-out');
+                
+                // Remove from DOM after fade out completes
+                setTimeout(() => {
+                    introOverlay.remove();
+                    
+                    // Trigger the existing slide-up animations
+                    const slideUpElements = document.querySelectorAll('.slide-up, .slide-up-delay');
+                    slideUpElements.forEach(el => {
+                        // Reset animation to trigger it again
+                        el.style.animation = 'none';
+                        // Force reflow
+                        void el.offsetWidth;
+                        // Re-add animation
+                        el.style.animation = '';
+                    });
+                    
+                    // Start observing scroll animations for main content
+                    const animatedElements = document.querySelectorAll('.fade-in-right, .fade-in-left, .fade-in-up');
+                    animatedElements.forEach(el => observer.observe(el));
+                }, 0);
+            }, 3800); // Total animation time + buffer
+        }
+
+        // Start intro animation when page loads
+        document.addEventListener('DOMContentLoaded', handleIntroAnimation);
+        
         // Smooth scrolling function
         function scrollToSection(sectionId) {
             const element = document.getElementById(sectionId);
@@ -657,12 +869,35 @@
             });
         }
 
+        // Function to scroll to section and then open modal
+        function scrollAndOpenProject(sectionId, modalId) {
+            const element = document.getElementById(sectionId);
+            const navHeight = 80;
+            const elementPosition = element.offsetTop - navHeight;
+            
+            // Scroll to the section first
+            window.scrollTo({
+                top: elementPosition,
+                behavior: 'smooth'
+            });
+            
+            // Wait for scroll to complete (approximate time based on distance)
+            const scrollDistance = Math.abs(window.pageYOffset - elementPosition);
+            const scrollTime = Math.min(1000, Math.max(300, scrollDistance / 2));
+            
+            // Open modal after scroll completes
+            setTimeout(() => {
+                openModal(modalId);
+            }, scrollTime + 100); // Small buffer after scroll
+        }
+
         // Intersection Observer for animations
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
         };
 
+        // Create observer but don't start observing yet - will start after intro completes
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -670,12 +905,6 @@
                 }
             });
         }, observerOptions);
-
-        // Observe all animated elements
-        document.addEventListener('DOMContentLoaded', () => {
-            const animatedElements = document.querySelectorAll('.fade-in-right, .fade-in-left, .fade-in-up');
-            animatedElements.forEach(el => observer.observe(el));
-        });
 
         // Modal functions
         function openModal(modalId) {
