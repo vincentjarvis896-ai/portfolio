@@ -420,8 +420,8 @@
                 <div class="bg-white rounded-xl shadow-lg p-8 hover-lift cursor-pointer" onclick="scrollAndOpenProject('projects', 'modal1')">
                     <img src="img/FRCRobot.png" alt="FRC Competition Robot" class="w-full h-64 object-contain rounded-lg">
                 </div>
-                <div class="bg-white rounded-xl shadow-lg p-8 hover-lift cursor-pointer" onclick="scrollAndOpenProject('projects', 'modal4')">
-                    <img src="img/Tarmo5.png" alt="RC Car Project" class="w-full h-64 object-contain rounded-lg">
+                <div class="bg-white rounded-xl shadow-lg p-8 hover-lift cursor-pointer" onclick="scrollAndOpenProject('projects', 'modalArmour')">
+                    <img src="img/armourModelIso.png" alt="Expandable Armour Mechanism" class="w-full h-64 object-contain rounded-lg">
                 </div>
             </div>
         </div>
@@ -449,11 +449,26 @@
                 <p class="text-lg text-gray-600 text-center">Engineering solutions from concept to creation</p>
             </div>
             
-            <div class="project-grid">
-                <!-- Project 1: Competitive Robotics -->
+                <div class="project-grid">
+                <!-- Project: Expandable Armour Mechanism -->
+                <div class="fade-in-up bg-white rounded-xl shadow-lg overflow-hidden hover-lift cursor-pointer" onclick="openModal('modalArmour')">
+                    <div class="bg-white h-[26rem] flex items-center justify-center">
+                        <img src="img/armourReal.png" alt="Expandable Armour Mechanism" class="w-full h-[26rem] object-contain">
+                    </div>
+                    <div class="p-6">
+                        <p class="text-sm text-gray-500 mb-4">Expandable mechanical armor prototype with dramatic transformation</p>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Expandable Armour Mechanism</h3>
+                        <p class="text-gray-600 mb-4">Designed a roleplay armor system with high-impact visual expansion and compact storage.</p>
+                        <div class="btn-hover bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 font-medium inline-block">
+                            Details
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project: Competitive Robotics -->
                 <div class="fade-in-up bg-white rounded-xl shadow-lg overflow-hidden hover-lift cursor-pointer" onclick="openModal('modal1')">
                     <div class="bg-white h-[26rem] flex items-center justify-center">
-                        <img src="img/FRCBotReal.png" alt="FRC Competition Robot" class="w-full h-[26rem] object-contain">
+                        <img src="img/FRCbotReal.png" alt="FRC Competition Robot" class="w-full h-[26rem] object-contain">
                     </div>
                     <div class="p-6">
                         <p class="text-sm text-gray-500 mb-4">Final FRC 2025 Competition Bot</p>
@@ -465,10 +480,25 @@
                     </div>
                 </div>
 
-                <!-- Project 2: Planetary Gearbox -->
+                <!-- Project: UWFE Chain Tensioners -->
+                <div class="fade-in-up bg-white rounded-xl shadow-lg overflow-hidden hover-lift cursor-pointer" onclick="openModal('modalChainTensioners')">
+                    <div class="bg-white h-[26rem] flex items-center justify-center">
+                        <img src="img/shimAssemRed.png" alt="UWFE Chain Tensioners" class="w-full h-[26rem] object-contain">
+                    </div>
+                    <div class="p-6">
+                        <p class="text-sm text-gray-500 mb-4">Drivetrain support component redesign with DFMA focus</p>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">UWFE Chain Tensioners</h3>
+                        <p class="text-gray-600 mb-4">Improved manufacturability and assembly efficiency using DFMA principles for drivetrain components.</p>
+                        <div class="btn-hover bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 font-medium inline-block">
+                            Details
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project: Planetary Gearbox -->
                 <div class="fade-in-up bg-white rounded-xl shadow-lg overflow-hidden hover-lift cursor-pointer" onclick="openModal('modal2')">
                     <div class="bg-white h-[26rem] flex items-center justify-center">
-                        <img src="img/Gearbox.png" alt="Planetary Gearbox" class="w-full h-[26rem] object-contain">
+                        <img src="img/gearboxClosed.png" alt="Planetary Gearbox" class="w-full h-[26rem] object-contain">
                     </div>
                     <div class="p-6">
                         <p class="text-sm text-gray-500 mb-4">3D printed prototype with custom bearing assemblies</p>
@@ -480,7 +510,7 @@
                     </div>
                 </div>
 
-                <!-- Project 3: Robotic Hand -->
+                <!-- Project: Robotic Hand -->
                 <div class="fade-in-up bg-white rounded-xl shadow-lg overflow-hidden hover-lift cursor-pointer" onclick="openModal('modal3')">
                     <div class="bg-white h-[26rem] flex items-center justify-center">
                         <img src="img/Hand.png" alt="Robotic Hand" class="w-full h-[26rem] object-contain">
@@ -495,22 +525,7 @@
                     </div>
                 </div>
 
-                <!-- Project 4: RC Car -->
-                <div class="fade-in-up bg-white rounded-xl shadow-lg overflow-hidden hover-lift cursor-pointer" onclick="openModal('modal4')">
-                    <div class="bg-white h-[26rem] flex items-center justify-center">
-                        <img src="img/Tarmo5.png" alt="RC Car" class="w-full h-[26rem] object-contain">
-                    </div>
-                    <div class="p-6">
-                        <p class="text-sm text-gray-500 mb-4">30kg servo with brushless motor drive system</p>
-                        <h3 class="text-xl font-bold text-gray-900 mb-2">RC Car</h3>
-                        <p class="text-gray-600 mb-4">Enhanced a 3D-printed RC car for off-road use. Added first-person view via a phone-mounted camera.</p>
-                        <div class="btn-hover bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 font-medium inline-block">
-                            Details
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 5: Micro Robot Dog -->
+                <!-- Project: Micro Robot Dog -->
                 <div class="fade-in-up bg-white rounded-xl shadow-lg overflow-hidden hover-lift cursor-pointer" onclick="openModal('modal5')">
                     <div class="bg-white h-[26rem] flex items-center justify-center">
                         <img src="img/RoboDog.png" alt="Micro Robot Dog" class="w-full h-[26rem] object-contain">
@@ -525,7 +540,7 @@
                     </div>
                 </div>
 
-                <!-- Project 6: Levitating Hydro Generator -->
+                <!-- Project: Levitating Hydro Generator -->
                 <div class="fade-in-up bg-white rounded-xl shadow-lg overflow-hidden hover-lift cursor-pointer" onclick="openModal('modal6')">
                     <div class="bg-white h-[26rem] flex items-center justify-center">
                         <img src="img/Levitation.png" alt="Levitating Hydro Generator" class="w-full h-[26rem] object-contain">
@@ -565,6 +580,8 @@
     </section>
 
     <!-- Modals for Projects -->
+    
+    <!-- Modal for Competitive Robotics (FRC) -->
     <div id="modal1" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('modal1')">&times;</span>
@@ -610,6 +627,7 @@
         </div>
     </div>
 
+    <!-- Modal for Planetary Gearbox -->
     <div id="modal2" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('modal2')">&times;</span>
@@ -617,44 +635,48 @@
                 <h2 class="text-3xl font-bold text-gray-900 mb-6">Planetary Gearbox</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                     <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
-                        <p class="text-gray-500">Coming Soon</p>
+                        <img src="img/gearboxClosed.png" alt="Planetary Gearbox Closed" class="w-full h-full object-contain">
                     </div>
                     <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
-                        <p class="text-gray-500">Coming Soon</p>
+                        <img src="img/Gearbox.png" alt="Planetary Gearbox" class="w-full h-full object-contain">
                     </div>
                     <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
-                        <p class="text-gray-500">Coming Soon</p>
+                        <video controls class="w-full h-full object-contain">
+                            <source src="img/gearboxVid.mov" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
                     </div>
                     <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
-                        <p class="text-gray-500">Coming Soon</p>
+                        <img src="img/Screenshot 2025-10-31 at 5.39.06 PM.png" alt="Planetary Gearbox CAD" class="w-full h-full object-contain">
                     </div>
                 </div>
-                <div class="space-y-6 text-gray-700">
-                    <div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">The Idea</h3>
-                        <p>Design a miniature, high-efficiency gearbox to maximize torque while minimizing space.</p>
-                        <p>Utilize planetary gear configuration for balanced load distribution and smooth motion.</p>
-                        <p>Integrate with a 12V brushed DC motor for practical mechanical testing.</p>
-                    </div>
+                <div class="space-y-4 text-gray-700">
+                    <p class="font-bold text-lg">The Idea:</p>
+                    <ul class="list-disc pl-5 mb-4">
+                        <li>Design a miniature, high-efficiency gearbox to maximize torque while minimizing space.</li>
+                        <li>Utilize planetary gear configuration for balanced load distribution and smooth motion.</li>
+                        <li>Integrate with a 12V brushed DC motor for practical mechanical testing.</li>
+                    </ul>
                     
-                    <div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">How?</h3>
-                        <p>Modeled in SolidWorks with custom gear geometry and 0.1 mm print tolerances for precision meshing.</p>
-                        <p>Included 6 bearings, 3 planet gears, and 1 sun gear to achieve compact, stable operation.</p>
-                        <p>Applied multi-material 3D printing and fastened components with 9 embedded screws for rigidity.</p>
-                    </div>
+                    <p class="font-bold text-lg">How?</p>
+                    <ul class="list-disc pl-5 mb-4">
+                        <li>Modeled in SolidWorks with custom gear geometry and 0.1 mm print tolerances for precision meshing.</li>
+                        <li>Included 6 bearings, 3 planet gears, and 1 sun gear to achieve compact, stable operation.</li>
+                        <li>Applied multi-material 3D printing and fastened components with 9 embedded screws for rigidity.</li>
+                    </ul>
                     
-                    <div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">Results</h3>
-                        <p>Achieved 5× torque increase and 5× speed reduction from direct motor output.</p>
-                        <p>Delivered 1 mm of precise motion at a 10 cm lever arm with minimal backlash.</p>
-                        <p>Demonstrated an efficient, durable prototype suitable for small-scale robotic applications.</p>
-                    </div>
+                    <p class="font-bold text-lg">Results:</p>
+                    <ul class="list-disc pl-5">
+                        <li>Achieved 5× torque increase and 5× speed reduction from direct motor output.</li>
+                        <li>Delivered 1 mm of precise motion at a 10 cm lever arm with minimal backlash.</li>
+                        <li>Demonstrated an efficient, durable prototype suitable for small-scale robotic applications.</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Modal for Robotic Hand -->
     <div id="modal3" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('modal3')">&times;</span>
@@ -674,65 +696,33 @@
                         <img src="img/HandGun.png" alt="Robotic Hand Gun Shape" class="w-full h-full object-contain">
                     </div>
                 </div>
-                <div class="space-y-6 text-gray-700">
-                    <div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">The Idea</h3>
-                        <p>Create a compact, lifelike robotic hand capable of mimicking human finger movement. Explore tendon-driven actuation for natural motion and smooth flexibility. Design a functional demonstration model built entirely within a weekend timeframe.</p>
-                    </div>
+                <div class="space-y-4 text-gray-700">
+                    <p class="font-bold text-lg">The Idea:</p>
+                    <ul class="list-disc pl-5 mb-4">
+                        <li>Create a compact, lifelike robotic hand capable of mimicking human finger movement.</li>
+                        <li>Explore tendon-driven actuation for natural motion and smooth flexibility.</li>
+                        <li>Design a functional demonstration model built entirely within a weekend timeframe.</li>
+                    </ul>
                     
-                    <div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">How?</h3>
-                        <p>Modeled all components in Onshape, refining finger geometry for strength and joint precision. Integrated 6 microservos and an Arduino Uno R3 for five programmable hand motions. Tested and iterated multiple elastic and tendon configurations for realistic finger motion and return tension.</p>
-                    </div>
+                    <p class="font-bold text-lg">How?</p>
+                    <ul class="list-disc pl-5 mb-4">
+                        <li>Modeled all components in Onshape, refining finger geometry for strength and joint precision.</li>
+                        <li>Integrated 6 microservos and an Arduino Uno R3 for five programmable hand motions.</li>
+                        <li>Tested and iterated multiple elastic and tendon configurations for realistic finger motion and return tension.</li>
+                    </ul>
                     
-                    <div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">Results</h3>
-                        <p>Improved finger strength by 40% through CAD optimization and material tuning. Achieved smooth, controllable actuation using a joystick interface. Completed a fully functional prototype despite material limits, time constraints, and compact design challenges.</p>
-                    </div>
+                    <p class="font-bold text-lg">Results:</p>
+                    <ul class="list-disc pl-5">
+                        <li>Improved finger strength by 40% through CAD optimization and material tuning.</li>
+                        <li>Achieved smooth, controllable actuation using a joystick interface.</li>
+                        <li>Completed a fully functional prototype despite material limits, time constraints, and compact design challenges.</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
 
-    <div id="modal4" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('modal4')">&times;</span>
-            <div class="p-8">
-                <h2 class="text-3xl font-bold text-gray-900 mb-6">RC Car</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
-                        <img src="img/Tarmo5.png" alt="RC Car" class="w-full h-full object-contain">
-                    </div>
-                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
-                        <img src="img/Tarmo5Full.png" alt="RC Car" class="w-full h-full object-contain">
-                    </div>
-                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
-                        <img src="img/Tarmo5Top.png" alt="RC Car" class="w-full h-full object-contain">
-                    </div>
-                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
-                        <img src="img/Tarmo5Camera.png" alt="RC Car" class="w-full h-full object-contain">
-                    </div>
-                </div>
-                <div class="space-y-6 text-gray-700">
-                    <div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">The Idea</h3>
-                        <p>Recreate and enhance a 3D-printed RC car design found online for high-torque off-road use. Add first-person view (FPV) capabilities through a phone-mounted camera system. Experiment with professional CAD practices for large multi-part assemblies in Onshape.</p>
-                    </div>
-                    
-                    <div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">How?</h3>
-                        <p>Designed custom TPU monster truck wheels with curved tread geometry for maximum grip. Added a modular phone mount for live FPV streaming via screen mirroring. Assembled components with threaded rods, counterbore bolts, and subassemblies for structural rigidity.</p>
-                    </div>
-                    
-                    <div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">Results</h3>
-                        <p>Achieved smooth off-road control with a 1000 kV BLDC motor and 30 kg servo. Improved traction and durability across varied terrain using flexible TPU parts. Learned robust CAD organization, part naming, and design intent—mirroring industry standards.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    <!-- Modal for Micro Robot Dog -->
     <div id="modal5" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('modal5')">&times;</span>
@@ -758,26 +748,128 @@
                         </video>
                     </div>
                 </div>
-                <div class="space-y-6 text-gray-700">
-                    <div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">The Idea</h3>
-                        <p>Build an ultra-small, affordable robot dog after finding existing models too expensive. Overcome the power limitations of microservos by distributing load through clever mechanical design. Use elastic support systems to assist servo torque and mimic muscle-like movement.</p>
-                    </div>
+                <div class="space-y-4 text-gray-700">
+                    <p class="font-bold text-lg">The Idea:</p>
+                    <ul class="list-disc pl-5 mb-4">
+                        <li>Build an ultra-small, affordable robot dog after finding existing models too expensive.</li>
+                        <li>Overcome the power limitations of microservos by distributing load through clever mechanical design.</li>
+                        <li>Use elastic support systems to assist servo torque and mimic muscle-like movement.</li>
+                    </ul>
                     
-                    <div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">How?</h3>
-                        <p>Designed and prototyped a single robotic leg as a proof of concept. Implemented dual diagonal servo actuation with elastic tension sharing the upward load. Tested lifting performance with 3D-printed components and lightweight linkages for structural efficiency.</p>
-                    </div>
+                    <p class="font-bold text-lg">How?</p>
+                    <ul class="list-disc pl-5 mb-4">
+                        <li>Designed and prototyped a single robotic leg as a proof of concept.</li>
+                        <li>Implemented dual diagonal servo actuation with elastic tension sharing the upward load.</li>
+                        <li>Tested lifting performance with 3D-printed components and lightweight linkages for structural efficiency.</li>
+                    </ul>
                     
-                    <div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">Results</h3>
-                        <p>Prototype leg successfully lifted 500 g, proving feasibility at small scale. Demonstrated that microservos can achieve realistic motion when aided by elastic support. Project halted before full quadruped completion due to electronics cost and control complexity, but validated key design principles.</p>
-                    </div>
+                    <p class="font-bold text-lg">Results:</p>
+                    <ul class="list-disc pl-5">
+                        <li>Prototype leg successfully lifted 500 g, proving feasibility at small scale.</li>
+                        <li>Demonstrated that microservos can achieve realistic motion when aided by elastic support.</li>
+                        <li>Project halted before full quadruped completion due to electronics cost and control complexity, but validated key design principles.</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Modal for Expandable Armour Mechanism -->
+    <div id="modalArmour" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modalArmour')">&times;</span>
+            <div class="p-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6">Expandable Armour Mechanism</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                        <img src="img/armourModelIso.png" alt="Expandable Armour Real" class="w-full h-full object-contain">
+                    </div>
+                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                        <img src="img/armourReal.png" alt="Expandable Armour ISO View" class="w-full h-full object-contain">
+                    </div>
+                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                        <img src="img/armourModelSide.png" alt="Expandable Armour Side View" class="w-full h-full object-contain">
+                    </div>
+                    <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                        <video controls class="w-full h-full object-contain">
+                            <source src="img/armourVid.mov" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+                <div class="space-y-4 text-gray-700">
+                    <p class="font-bold text-lg">The Idea:</p>
+                    <ul class="list-disc pl-5 mb-4">
+                        <li>Create a roleplay armor system with a high-impact visual expansion sequence.</li>
+                        <li>Balance wow factor, compactness, and mechanical feasibility.</li>
+                        <li>Follow a complete engineering design process from concept to tested prototype.</li>
+                    </ul>
+                    
+                    <p class="font-bold text-lg">How?</p>
+                    <ul class="list-disc pl-5 mb-4">
+                        <li>Evaluated functions, criteria, and constraints, followed by research and ideation.</li>
+                        <li>Designed and iterated the mechanism in SolidWorks, using complex curves and DFMA principles.</li>
+                        <li>Fabricated multiple prototypes through 3D printing, assembly, testing, and formal report documentation.</li>
+                    </ul>
+                    
+                    <p class="font-bold text-lg">Results:</p>
+                    <ul class="list-disc pl-5">
+                        <li>Reduced overall thickness from 4.0 cm to 2.1 cm across three iterations.</li>
+                        <li>Delivered a fully functional expanding armor mechanism with reliable deployment.</li>
+                        <li>Developed strong skills in mechanical ideation, CAD, DFMA, prototyping, and technical reporting.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for UWFE Chain Tensioners -->
+    <div id="modalChainTensioners" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modalChainTensioners')">&times;</span>
+            <div class="p-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6">UWFE Chain Tensioners</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                            <img src="img/shimAssemRed.png" alt="Chain Tensioner Design" class="w-full h-full object-contain">
+                        </div>
+                        <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                            <img src="img/shimDrawLeft.png" alt="Chain Tensioner Assembly" class="w-full h-full object-contain">
+                        </div>
+                        <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                            <img src="img/shimModel.png" alt="Chain Tensioner Top View" class="w-full h-full object-contain">
+                        </div>
+                        <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                            <img src="img/shimDrawRight.png" alt="Chain Tensioner Full Assembly" class="w-full h-full object-contain">
+                        </div>
+                    </div>
+                <div class="space-y-4 text-gray-700">
+                    <p class="font-bold text-lg">The Idea:</p>
+                    <ul class="list-disc pl-5 mb-4">
+                        <li>Improve manufacturability and assembly efficiency using DFMA principles.</li>
+                        <li>Optimize component simplicity, tolerances, and material choice for real-world fabrication.</li>
+                        <li>Support drivetrain performance through precise chain tensioning.</li>
+                    </ul>
+                    
+                    <p class="font-bold text-lg">How?</p>
+                    <ul class="list-disc pl-5 mb-4">
+                        <li>Investigated and benchmarked multiple catch can design configurations, analyzing wall thickness, materials, and manufacturing methods.</li>
+                        <li>Applied DFMA in SolidWorks to reduce part count and improve thermal performance.</li>
+                        <li>Designed two precision shims to sit between the motor mount and driveshaft, incorporating proper hole tolerances for waterjet cutting.</li>
+                    </ul>
+                    
+                    <p class="font-bold text-lg">Results:</p>
+                    <ul class="list-disc pl-5">
+                        <li>Achieved a 25% reduction in part count while improving cooling efficiency.</li>
+                        <li>Delivered manufacturable, waterjet-ready shim designs with correct fit and alignment.</li>
+                        <li>Gained hands-on experience applying DFMA and tolerance analysis to functional drivetrain components.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Levitating Hydro Generator -->
     <div id="modal6" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('modal6')">&times;</span>
@@ -791,7 +883,7 @@
                         <img src="img/Levitation.png" alt="Levitating Generator" class="w-full h-full object-contain">
                     </div>
                     <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
-                       <video controls class="w-full h-full object-contain">
+                    <video controls class="w-full h-full object-contain">
                             <source src="img/GenFullVid.mov" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
@@ -803,21 +895,27 @@
                         </video>
                     </div>
                 </div>
-                <div class="space-y-6 text-gray-700">
-                    <div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">The Idea</h3>
-                        <p>Create a high-efficiency hydro generator by eliminating bearing friction through magnetic levitation. Use overengineering as exploration, testing the limits of unconventional generator design. Incorporate a flywheel system to maintain smooth, consistent rotation during operation.</p>
-                    </div>
+                <div class="space-y-4 text-gray-700">
+                    <p class="font-bold text-lg">The Idea:</p>
+                    <ul class="list-disc pl-5 mb-4">
+                        <li>Create a high-efficiency hydro generator by eliminating bearing friction through magnetic levitation.</li>
+                        <li>Use overengineering as exploration, testing the limits of unconventional generator design.</li>
+                        <li>Incorporate a flywheel system to maintain smooth, consistent rotation during operation.</li>
+                    </ul>
                     
-                    <div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">How?</h3>
-                        <p>Built the frame from 2020 aluminum extrusions for precise alignment and rigidity. Integrated 60 N52 neodymium magnets for levitation and power generation. Wound custom 20 AWG copper coils and coupled them with a high-inertia flywheel for steady energy output.</p>
-                    </div>
+                    <p class="font-bold text-lg">How?</p>
+                    <ul class="list-disc pl-5 mb-4">
+                        <li>Built the frame from 2020 aluminum extrusions for precise alignment and rigidity.</li>
+                        <li>Integrated 60 N52 neodymium magnets for levitation and power generation.</li>
+                        <li>Wound custom 20 AWG copper coils and coupled them with a high-inertia flywheel for steady energy output.</li>
+                    </ul>
                     
-                    <div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">Results</h3>
-                        <p>Generated a peak power output of 6 W with an overall efficiency of ~5%. Found that magnetic interference between the levitation and generator systems caused major energy losses. Despite inefficiency, the project successfully demonstrated magnetic levitation feasibility in a functional generator setup.</p>
-                    </div>
+                    <p class="font-bold text-lg">Results:</p>
+                    <ul class="list-disc pl-5">
+                        <li>Generated a peak power output of 6 W with an overall efficiency of ~5%.</li>
+                        <li>Found that magnetic interference between the levitation and generator systems caused major energy losses.</li>
+                        <li>Despite inefficiency, the project successfully demonstrated magnetic levitation feasibility in a functional generator setup.</li>
+                    </ul>
                 </div>
             </div>
         </div>
